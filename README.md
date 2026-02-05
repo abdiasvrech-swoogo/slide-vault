@@ -1,5 +1,5 @@
-<p align="right">
-  <img src="assets/swoogo-logo.svg" alt="Swoogo" width="200" style="margin-bottom: -60px">
+<p align="center">
+  <img src="assets/swoogo-logo.svg" alt="Swoogo" width="200">
 </p>
 
 # 📊 Slide Vault
