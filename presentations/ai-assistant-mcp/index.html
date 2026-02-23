@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta
+      name="description"
+      content="Enterprise-grade MCP server connecting AI assistants to Swoogo: 25 tools, 7 guardrails, zero unconfirmed writes."
+    />
+    <title>Swoogo AI MCP Server Brief — Abdias</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="../../assets/swoogo-icon.png" />
+    <link rel="apple-touch-icon" href="../../assets/swoogo-icon.png" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:url"
+      content="https://abdiasvrech-swoogo.github.io/slide-vault/presentations/ai-assistant-mcp/"
+    />
+    <meta
+      property="og:title"
+      content="Swoogo AI MCP Server Brief — Abdias"
+    />
+    <meta
+      property="og:description"
+      content="Enterprise-grade MCP server connecting AI assistants to Swoogo: 25 tools, 7 guardrails, zero unconfirmed writes."
+    />
+    <meta
+      property="og:image"
+      content="https://abdiasvrech-swoogo.github.io/slide-vault/presentations/ai-assistant-mcp/image.png"
+    />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta
+      property="twitter:url"
+      content="https://abdiasvrech-swoogo.github.io/slide-vault/presentations/ai-assistant-mcp/"
+    />
+    <meta
+      property="twitter:title"
+      content="Swoogo AI MCP Server Brief — Abdias"
+    />
+    <meta
+      property="twitter:description"
+      content="Enterprise-grade MCP server connecting AI assistants to Swoogo: 25 tools, 7 guardrails, zero unconfirmed writes."
+    />
+    <meta
+      property="twitter:image"
+      content="https://abdiasvrech-swoogo.github.io/slide-vault/presentations/ai-assistant-mcp/image.png"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .slide-enter { animation: slideIn 0.4s ease-out forwards; }
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar { width: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #e2e8f0; border-radius: 10px; }
+    </style>
+</head>
+<body class="bg-slate-50 min-h-screen flex flex-col items-center justify-center p-0 md:p-6 lg:p-10">
+
+    <!-- Global Header -->
+    <header class="w-full max-w-6xl flex flex-col sm:flex-row justify-between items-center mb-4 px-6 gap-2">
+        <div class="flex items-center gap-4">
+            <img src="https://swoogo.events/wp-content/themes/swoogo/images/logos/new-swoogo-logo-orange.svg" alt="Swoogo" class="h-6 sm:h-8">
+            <div class="hidden sm:block h-6 w-px bg-slate-200"></div>
+            <span class="text-slate-400 font-bold uppercase tracking-widest text-[10px] sm:text-xs text-center sm:text-left">AI MCP Server Brief</span>
+        </div>
+        <div class="text-slate-500 text-[10px] sm:text-xs font-bold tracking-widest">
+            <span id="slide-num">1</span> / 14 — <span class="text-violet-600">Abdias</span>
+        </div>
+    </header>
+
+    <!-- Main Presentation Container -->
+    <main id="deck-container" class="w-full max-w-6xl bg-white md:rounded-[3rem] shadow-xl md:shadow-2xl border border-slate-100 flex flex-col relative overflow-hidden min-h-[85vh] md:min-h-[720px]">
+        
+        <!-- Progress Bar -->
+        <div class="h-1.5 w-full bg-slate-100 absolute top-0 left-0 z-50">
+            <div id="progress-bar" class="h-full bg-indigo-600 transition-all duration-500" style="width: 7.14%"></div>
+        </div>
+
+        <!-- Slides Content -->
+        <div class="flex-1 overflow-y-auto custom-scrollbar flex flex-col" id="slide-content-wrapper">
+             <div class="p-6 sm:p-10 md:p-16 flex-1 flex flex-col" id="slide-content">
+                <!-- Content injected by JS -->
+             </div>
+        </div>
+
+        <!-- Desktop Navigation Dots -->
+        <div class="hidden md:flex absolute bottom-10 left-16 gap-2" id="nav-dots"></div>
+
+        <!-- Navigation Controls -->
+        <div class="flex justify-between md:justify-end items-center p-6 md:absolute md:bottom-10 md:right-16 gap-4 border-t md:border-none border-slate-100 bg-white md:bg-transparent">
+            <button onclick="prevSlide()" class="p-3 sm:p-4 rounded-xl sm:rounded-2xl border border-slate-200 hover:bg-slate-50 transition-all group">
+                <i class="fa-solid fa-chevron-left text-slate-400 group-hover:text-indigo-600"></i>
+            </button>
+            <button onclick="nextSlide()" class="p-3 sm:p-4 rounded-xl sm:rounded-2xl bg-slate-900 hover:bg-slate-800 text-white transition-all">
+                <i class="fa-solid fa-chevron-right"></i>
+            </button>
+        </div>
+    </main>
+
+    <footer class="mt-6 hidden md:block text-slate-400 text-[10px] font-medium uppercase tracking-widest">
+        Use arrow keys or spacebar to navigate
+    </footer>
+
+    <script>
+        const slides = [
+            // Slide 1: Hook
+            {
+                title: "",
+                content: `
+                <div class="flex flex-col items-center justify-center h-full text-center py-10 md:py-16 slide-enter flex-1">
+                    <div class="p-5 bg-indigo-50 rounded-3xl mb-8">
+                        <i class="fa-solid fa-microchip text-4xl md:text-5xl text-indigo-600"></i>
+                    </div>
+                    <h1 class="text-4xl md:text-6xl font-black text-slate-900 mb-6 leading-tight">
+                        Swoogo AI MCP Server<br>
+                        <span class="gradient-text">25 Tools. 7 Guardrails.</span><br>
+                        Zero Unconfirmed Writes.
+                    </h1>
+                    <p class="text-lg md:text-2xl text-slate-500 max-w-2xl font-medium">
+                        Enterprise-grade connectivity between AI assistants and the Swoogo event management platform.
+                    </p>
+                    <div class="mt-8 md:mt-12 flex flex-wrap justify-center gap-3">
+                        <span class="px-4 py-1.5 bg-emerald-100 text-emerald-700 rounded-full text-xs font-bold uppercase tracking-wider">Pre-launch</span>
+                        <span class="px-4 py-1.5 bg-indigo-100 text-indigo-700 rounded-full text-xs font-bold uppercase tracking-wider">V1.0.0-RC</span>
+                    </div>
+                </div>
+                `
+            },
+            // Slide 2: One Product
+            {
+                title: "One Product. Shared Core.",
+                content: `
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 py-4 slide-enter flex-1 items-center">
+                    <div class="space-y-6">
+                        <p class="text-xl md:text-2xl leading-relaxed text-slate-700 font-medium italic border-l-4 border-indigo-500 pl-6">
+                            "An enterprise-grade MCP server that connects assistants (Claude, Cursor, Lovable) with full governance, confirmation workflows, and audit trails."
+                        </p>
+                        <ul class="space-y-4 pt-6">
+                            <li class="flex items-start gap-4 text-slate-600">
+                                <i class="fa-solid fa-zap text-indigo-500 mt-1"></i>
+                                <span class="text-base md:text-lg font-medium">Connects AI to registrations, sessions, speakers, and payments.</span>
+                            </li>
+                            <li class="flex items-start gap-4 text-slate-600">
+                                <i class="fa-solid fa-shield-halved text-indigo-500 mt-1"></i>
+                                <span class="text-base md:text-lg font-medium">Multi-tenant isolation at the DB level.</span>
+                            </li>
+                            <li class="flex items-start gap-4 text-slate-600">
+                                <i class="fa-solid fa-clock text-indigo-500 mt-1"></i>
+                                <span class="text-base md:text-lg font-medium">Stateful session management via streamable HTTP.</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="bg-slate-900 rounded-3xl p-8 shadow-2xl flex items-center justify-center">
+                        <div class="grid grid-cols-2 gap-4 w-full">
+                            <div class="p-5 bg-slate-800 rounded-xl border border-slate-700 text-center">
+                                <div class="text-indigo-400 font-bold text-[10px] uppercase mb-1">Transport</div>
+                                <div class="text-white text-base md:text-xl font-bold">MCP / HTTP</div>
+                            </div>
+                            <div class="p-5 bg-slate-800 rounded-xl border border-slate-700 text-center">
+                                <div class="text-indigo-400 font-bold text-[10px] uppercase mb-1">Auth</div>
+                                <div class="text-white text-base md:text-xl font-bold">OAuth 2.1</div>
+                            </div>
+                            <div class="p-5 bg-slate-800 rounded-xl border border-slate-700 text-center">
+                                <div class="text-indigo-400 font-bold text-[10px] uppercase mb-1">Logic</div>
+                                <div class="text-white text-base md:text-xl font-bold">ToolExecutor</div>
+                            </div>
+                            <div class="p-5 bg-slate-800 rounded-xl border border-slate-700 text-center">
+                                <div class="text-indigo-400 font-bold text-[10px] uppercase mb-1">Storage</div>
+                                <div class="text-white text-base md:text-xl font-bold">PG + Redis</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                `
+            },
+            // Slide 3: Architecture (CRISS-CROSS)
+            {
+                title: "Architecture Overview",
+                content: `
+                <div class="flex flex-col gap-8 slide-enter flex-1 justify-center">
+                    <div class="bg-slate-50 rounded-[3rem] p-8 sm:p-12 border border-slate-200">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-y-12 gap-x-12 items-center relative">
+                            
+                            <!-- Clients (Top Left) -->
+                            <div class="bg-white p-6 rounded-3xl shadow-sm border border-slate-100 text-center flex flex-col items-center justify-center">
+                                <i class="fa-solid fa-terminal text-3xl text-slate-400 mb-4"></i>
+                                <h4 class="font-bold text-slate-900">Clients</h4>
+                                <p class="text-xs text-slate-500 mt-1">Claude, Code, Cursor, Lovable</p>
+                            </div>
+
+                            <!-- Infrastructure (Top Right) -->
+                            <div class="bg-white p-6 rounded-3xl shadow-sm border border-slate-100 text-center flex flex-col items-center justify-center">
+                                <i class="fa-solid fa-database text-3xl text-slate-400 mb-4"></i>
+                                <h4 class="font-bold text-slate-900">Infrastructure</h4>
+                                <p class="text-xs text-slate-500 mt-1">Swoogo API, PG, Redis</p>
+                            </div>
+
+                            <!-- Criss-Cross Arrows (Overlay) -->
+                            <div class="hidden md:block absolute inset-0 pointer-events-none">
+                                <svg class="w-full h-full" viewBox="0 0 400 200" fill="none">
+                                    <path d="M100 80 L200 130" stroke="#E2E8F0" stroke-width="2" stroke-dasharray="4 4" />
+                                    <path d="M200 130 L300 80" stroke="#E2E8F0" stroke-width="2" stroke-dasharray="4 4" />
+                                    <path d="M200 120 V140" stroke="#6366F1" stroke-width="3" stroke-linecap="round" />
+                                </svg>
+                            </div>
+
+                            <!-- MCP Server (Center Bottom) -->
+                            <div class="md:col-span-2 flex justify-center">
+                                <div class="bg-white p-8 rounded-3xl shadow-lg border-2 border-indigo-500 text-center scale-110 z-10 w-full max-w-sm">
+                                    <i class="fa-solid fa-layer-group text-4xl text-indigo-600 mb-4"></i>
+                                    <h4 class="font-bold text-slate-900">MCP Server</h4>
+                                    <p class="text-xs text-indigo-500 mt-1 font-bold uppercase tracking-widest">Unified Governance Pipeline</p>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="text-center text-slate-500 text-sm font-medium">
+                        Every tool call passes through: Auth → Governance → HITL → Execute → Audit.
+                    </div>
+                </div>
+                `
+            },
+            // Slide 4: Pipeline (Centered + Colored)
+            {
+                title: "Tool Execution Pipeline",
+                content: `
+                <div class="flex flex-col flex-1 justify-center slide-enter">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 py-4">
+                        ${[
+                            { step: "01", name: "Auth", desc: "JWT or Bearer validation", icon: "lock", color: "text-blue-500" },
+                            { step: "02", name: "Governance", desc: "Tier check & blocklists", icon: "shield-halved", color: "text-emerald-500" },
+                            { step: "03", name: "HITL", desc: "User approval for writes", icon: "user-check", color: "text-orange-500" },
+                            { step: "04", name: "Execute", desc: "Swoogo REST API call", icon: "bolt", color: "text-amber-500" },
+                            { step: "05", name: "Audit", desc: "Immutable logging", icon: "clipboard-list", color: "text-indigo-500" }
+                        ].map(item => `
+                            <div class="bg-white p-8 rounded-3xl border border-slate-100 shadow-sm flex flex-col gap-3 relative hover:translate-y-[-5px] transition-all">
+                                <span class="text-slate-900 font-black text-xl">${item.step}</span>
+                                <i class="fa-solid fa-${item.icon} ${item.color} text-3xl my-2"></i>
+                                <h5 class="font-bold text-slate-900">${item.name}</h5>
+                                <p class="text-xs text-slate-500 leading-relaxed">${item.desc}</p>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+                `
+            },
+            // Slide 5: Tools (Centered)
+            {
+                title: "25 Domain + 4 System Tools",
+                content: `
+                <div class="flex flex-col flex-1 justify-center slide-enter">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 py-4">
+                        <div class="space-y-4">
+                            <div class="flex items-center justify-between">
+                                <h4 class="text-xl font-bold text-slate-900">Read Tools (17)</h4>
+                                <span class="px-2 py-0.5 bg-emerald-100 text-emerald-700 text-[10px] font-bold rounded uppercase">Tier 0 - Auto</span>
+                            </div>
+                            <div class="bg-slate-50 p-8 rounded-[2rem] border border-slate-100 grid grid-cols-2 gap-x-4 gap-y-3 text-xs text-slate-600">
+                                ${['Events', 'Registrants', 'Sessions', 'Magic Link', 'Attendance', 'Speakers', 'Sponsors', 'Discounts', 'Reg Types', 'Contacts', 'Tracks', 'Locations', 'Transactions', 'Packages', 'Structure'].map(t => `
+                                    <div class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-emerald-500 text-[10px]"></i> ${t}</div>
+                                `).join('')}
+                            </div>
+                        </div>
+                        <div class="space-y-4">
+                            <div class="flex items-center justify-between">
+                                <h4 class="text-xl font-bold text-slate-900">Write Tools (8)</h4>
+                                <span class="px-2 py-0.5 bg-orange-100 text-orange-700 text-[10px] font-bold rounded uppercase">Tier 2/3 - Confirm</span>
+                            </div>
+                            <div class="space-y-4">
+                                <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm flex justify-between items-center">
+                                    <span class="text-sm font-semibold text-slate-700">Registrant Management</span>
+                                    <span class="text-[10px] text-slate-400 italic">Add, Update, Check-in</span>
+                                </div>
+                                <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm flex justify-between items-center">
+                                    <span class="text-sm font-semibold text-slate-700">Session Enrollment</span>
+                                    <span class="text-[10px] text-slate-400 italic">Assign, Remove</span>
+                                </div>
+                                <div class="bg-rose-50 p-6 rounded-2xl border border-rose-100 shadow-sm flex justify-between items-center">
+                                    <span class="text-sm font-bold text-rose-700">Create Transaction</span>
+                                    <span class="px-2 py-0.5 bg-rose-200 text-rose-700 text-[9px] font-black rounded uppercase tracking-tighter">Tier 3</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                `
+            },
+            // Slide 6: Governance
+            {
+                title: "4-Tier Governance Model",
+                content: `
+                <div class="flex flex-col flex-1 justify-center slide-enter">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 py-8">
+                        ${[
+                            { tier: "0", name: "Auto", color: "emerald", desc: "Read tools execute immediately without friction." },
+                            { tier: "1", name: "Notify", color: "yellow", desc: "Execute + async notification (reserved)." },
+                            { tier: "2", name: "Confirm", color: "orange", desc: "Pause until user approves action in chat." },
+                            { tier: "3", name: "Double", color: "rose", desc: "Structured review + risk impact assessment." }
+                        ].map(item => `
+                            <div class="bg-white p-8 rounded-[2.5rem] border-b-8 border-b-${item.color}-500 shadow-sm text-center flex flex-col items-center gap-4 hover:translate-y-[-5px] transition-all">
+                                <div class="w-14 h-14 rounded-full bg-${item.color}-500 text-white flex items-center justify-center font-black text-xl shadow-lg">${item.tier}</div>
+                                <h5 class="font-bold text-slate-900">${item.name}</h5>
+                                <p class="text-xs text-slate-500 leading-relaxed">${item.desc}</p>
+                            </div>
+                        `).join('')}
+                    </div>
+                    <div class="p-6 bg-rose-50 rounded-2xl border border-rose-100 flex items-start gap-4 mt-6">
+                        <i class="fa-solid fa-triangle-exclamation text-rose-500 mt-1"></i>
+                        <div>
+                            <h6 class="font-bold text-rose-900 text-sm">G1 Blocklist Protection</h6>
+                            <p class="text-rose-700 text-xs">Destructive operations (drop, truncate, delete_all) are hard-blocked regardless of tier.</p>
+                    </div>
+                </div>
+                </div>
+                `
+            },
+            // Slide 7: HITL Flow
+            {
+                title: "HITL Confirmation Workflow",
+                content: `
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center py-6 slide-enter flex-1">
+                    <div class="space-y-6">
+                        ${[
+                            { i: 1, text: "Tool call triggers Tier 2+ governance check." },
+                            { i: 2, text: "Server creates a pending_confirmation record." },
+                            { i: 3, text: "MCP returns token + summary to the AI." },
+                            { i: 4, text: "AI asks user for permission in chat UI." },
+                            { i: 5, text: "User approves → AI calls confirm_action tool." }
+                        ].map(s => `
+                            <div class="flex items-center gap-4">
+                                <span class="w-10 h-10 rounded-2xl bg-indigo-600 text-white flex-shrink-0 flex items-center justify-center font-bold text-sm shadow-indigo-100 shadow-lg">${s.i}</span>
+                                <span class="text-slate-700 font-medium text-lg font-semibold">${s.text}</span>
+                            </div>
+                        `).join('')}
+                    </div>
+                    <div class="bg-slate-900 rounded-[3rem] p-10 space-y-6 shadow-2xl">
+                        <div class="text-indigo-400 font-mono text-xs uppercase tracking-widest">Confirmation Token</div>
+                        <div class="bg-slate-800 p-6 rounded-2xl text-indigo-300 font-mono text-sm break-all border border-slate-700">
+                            conf_92837482910_approved_auth_tool_292
+                        </div>
+                        <div class="flex justify-between items-center text-slate-400 text-xs mt-6">
+                            <span>Status: <span class="text-orange-400 font-bold">Pending Approval</span></span>
+                            <span>TTL: 300s</span>
+                        </div>
+                        <div class="h-2 w-full bg-slate-700 rounded-full mt-2">
+                            <div class="h-full bg-indigo-500 w-2/3 rounded-full"></div>
+                        </div>
+                    </div>
+                </div>
+                `
+            },
+            // Slide 8: Highlights
+            {
+                title: "Implementation Highlights",
+                content: `
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 py-4 slide-enter flex-1 justify-center">
+                    ${[
+                        { title: "Fuzzy Search", desc: "3-stage escalation logic built into core read tools.", icon: "magnifying-glass" },
+                        { title: "Page-Grouped Questions", desc: "~40% fewer response tokens for forms.", icon: "layer-group" },
+                        { title: "Translation Fallback", desc: "Server-side merge of translation strings.", icon: "language" },
+                        { title: "Response-Diff", desc: "Update tools return only modified fields.", icon: "code-compare" },
+                        { title: "Normalized Maps", desc: "Consistent empty types ([] vs {}) for logic safety.", icon: "equals" },
+                        { title: "Expand Params", desc: "Eliminates N+1 calls via hydration layers.", icon: "expand" }
+                    ].map(h => `
+                        <div class="bg-white p-8 rounded-3xl border border-slate-100 shadow-sm flex flex-col gap-3 hover:bg-slate-50 transition-colors">
+                            <div class="w-12 h-12 bg-indigo-50 rounded-2xl flex items-center justify-center">
+                                <i class="fa-solid fa-${h.icon} text-indigo-600 text-xl"></i>
+                            </div>
+                            <h5 class="font-bold text-slate-900 text-sm mt-2 font-bold">${h.title}</h5>
+                            <p class="text-xs text-slate-500 leading-relaxed">${h.desc}</p>
+                        </div>
+                    `).join('')}
+                </div>
+                `
+            },
+            // Slide 9: API Improvements (NEW STORY)
+            {
+                title: "Improving the Swoogo API Upstairs",
+                content: `
+                <div class="flex flex-col flex-1 justify-center slide-enter">
+                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 py-4">
+                        <div class="bg-white p-8 rounded-[2.5rem] border border-slate-100 shadow-lg flex flex-col gap-4 group">
+                            <div class="bg-emerald-50 text-emerald-600 w-fit px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest">BATCH FETCH</div>
+                            <h5 class="font-black text-slate-900 italic text-xl">ids Query Parameter</h5>
+                            <p class="text-xs text-slate-500 leading-relaxed">Added to all 30+ endpoints. Eliminates N round trips. Strict validation (max 100, positive ints only).</p>
+                            <div class="mt-auto text-[10px] text-emerald-600 font-bold bg-emerald-50 p-2 rounded text-center">Applied at Base Controller Level</div>
+                        </div>
+                        <div class="bg-white p-8 rounded-[2.5rem] border border-slate-100 shadow-lg flex flex-col gap-4 group">
+                            <div class="bg-indigo-50 text-indigo-600 w-fit px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest">HYDRATION</div>
+                            <h5 class="font-black text-slate-900 italic text-xl">expand=fees on Packages</h5>
+                            <p class="text-xs text-slate-500 leading-relaxed">Fixed the classic N+1 fee problem. Pricing now returns inline in list calls. One call vs 1+N calls.</p>
+                            <div class="mt-auto text-[10px] text-indigo-600 font-bold bg-indigo-50 p-2 rounded text-center">Impact: -90% Latency on Pricing</div>
+                        </div>
+                        <div class="bg-white p-8 rounded-[2.5rem] border border-slate-100 shadow-lg flex flex-col gap-4 group">
+                            <div class="bg-violet-50 text-violet-600 w-fit px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest">LINKAGE</div>
+                            <h5 class="font-black text-slate-900 italic text-xl">registrant_id in Transaction</h5>
+                            <p class="text-xs text-slate-500 leading-relaxed">Added to default fields. Every transaction response now explicitly shows who it belongs to by default.</p>
+                            <div class="mt-auto text-[10px] text-violet-600 font-bold bg-violet-50 p-2 rounded text-center">One Line Schema Change</div>
+                        </div>
+                    </div>
+                    <div class="mt-8 bg-slate-50 p-6 rounded-3xl border border-slate-200 text-center">
+                        <p class="text-xs text-slate-500 font-medium italic">5 API reference documents produced. Every API consumer benefits — not just the MCP server.</p>
+                    </div>
+                </div>
+                `
+            },
+            // Slide 10: Case Study
+            {
+                title: "Registration Page Call Optimization",
+                content: `
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 py-4 slide-enter flex-1 items-center">
+                    <div class="bg-emerald-50 p-10 rounded-[3rem] border border-emerald-100 shadow-sm">
+                        <div class="flex items-center justify-between mb-8">
+                            <h5 class="font-black text-emerald-900 text-xl tracking-tight">Optimized — 4-6 Calls</h5>
+                            <span class="px-3 py-1 bg-emerald-500 text-white text-[10px] font-black rounded-full uppercase">Efficient</span>
+                        </div>
+                        <ul class="space-y-4 text-sm text-emerald-800 font-medium">
+                            <li class="flex justify-between items-center bg-white/50 p-3 rounded-xl border border-white"><span>1. Events (event_id)</span> <span class="text-emerald-500 font-mono text-xs">Metadata</span></li>
+                            <li class="flex justify-between items-center bg-white/50 p-3 rounded-xl border border-white"><span>2. Questions (expanded)</span> <span class="text-emerald-500 font-mono text-xs italic font-bold">Keystone Call</span></li>
+                            <li class="flex justify-between items-center bg-white/50 p-3 rounded-xl border border-white"><span>3. Packages (expand=fees)</span> <span class="text-emerald-500 font-mono text-xs">Pricing</span></li>
+                            <li class="flex justify-between items-center bg-white/50 p-3 rounded-xl border border-white"><span>4. Speakers (expand=sessions)</span> <span class="text-emerald-500 font-mono text-xs">Linkage</span></li>
+                        </ul>
+                    </div>
+                    <div class="bg-slate-50 p-10 rounded-[3rem] border border-slate-200 opacity-60">
+                        <div class="flex items-center justify-between mb-8">
+                            <h5 class="font-bold text-slate-900 text-xl tracking-tight">Naive — 10 + 2N Calls</h5>
+                            <span class="px-3 py-1 bg-slate-400 text-white text-[10px] font-black rounded-full uppercase tracking-widest">Standard</span>
+                        </div>
+                        <ul class="space-y-3 text-[11px] text-slate-600 font-medium">
+                            <li>1. Event metadata call</li>
+                            <li>1. Flat question list call</li>
+                            <li>1. Reg-types list call</li>
+                            <li>1. Session list call</li>
+                            <li>1. Package list call</li>
+                            <li class="font-bold text-rose-600">N. Package detail (Fees) × N</li>
+                            <li class="font-bold text-rose-600">N. Speaker detail (Assignments) × N</li>
+                        </ul>
+                    </div>
+                </div>
+                `
+            },
+            // Slide 11: Code Mode
+            {
+                title: "Cloudflare Code Mode Assessment",
+                content: `
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center py-6 slide-enter flex-1">
+                    <div class="space-y-6">
+                        <h4 class="text-xl md:text-3xl font-black text-slate-900 tracking-tight">Why Not Code Mode?</h4>
+                        <p class="text-slate-500 text-lg leading-relaxed font-medium">
+                            Cloudflare's "search + execute" pattern works for 2,500+ endpoints. We have ~25 stable tools. Arbitrary execution breaks our safety layer.
+                        </p>
+                        <div class="bg-rose-50 p-8 rounded-[2.5rem] border border-rose-100 flex flex-col gap-3 shadow-sm">
+                            <h6 class="text-rose-700 font-black text-xs uppercase tracking-widest">The Risk</h6>
+                            <p class="text-rose-600 text-sm font-medium leading-relaxed">AI-generated code could bypass server-side field blocks (registration_status) and mid-code execution cannot be paused for HITL confirmation.</p>
+                        </div>
+                    </div>
+                    <div class="bg-white p-10 rounded-[3rem] border border-slate-100 shadow-2xl relative">
+                        <h5 class="font-black text-slate-900 mb-6 text-xl tracking-tight">Our Success</h5>
+                        <ul class="space-y-5">
+                            ${[
+                                "Predictable tools = Predicable governance.",
+                                "Zod schemas validate every parameter.",
+                                "Server IS the single source of truth.",
+                                "Fits in 10k context tokens (easily)."
+                            ].map(t => `<li class="flex items-center gap-4 text-sm font-bold text-slate-600"><i class="fa-solid fa-check-circle text-indigo-500 text-lg"></i> ${t}</li>`).join('')}
+                        </ul>
+                    </div>
+                </div>
+                `
+            },
+            // Slide 12: Roadmap (Light Ph2)
+            {
+                title: "Status & Roadmap",
+                content: `
+                <div class="flex flex-col flex-1 justify-center slide-enter">
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 py-4">
+                        <div class="space-y-6">
+                            <h5 class="font-bold text-slate-400 text-xs uppercase tracking-widest">Phase 0: Stabilize (Done)</h5>
+                            <div class="bg-white p-8 rounded-[2.5rem] border border-slate-100 shadow-sm space-y-4">
+                                <div class="flex items-center gap-3 text-sm font-bold text-emerald-600"><i class="fa-solid fa-circle-check"></i> Fix maxTier</div>
+                                <div class="flex items-center gap-3 text-sm font-bold text-emerald-600"><i class="fa-solid fa-circle-check"></i> Security Headers</div>
+                                <div class="flex items-center gap-3 text-sm font-bold text-emerald-600"><i class="fa-solid fa-circle-check"></i> 366 Unit Tests</div>
+                            </div>
+                        </div>
+                        <div class="space-y-6">
+                            <h5 class="font-bold text-slate-400 text-xs uppercase tracking-widest">Phase 1: Launch (Feb)</h5>
+                            <div class="bg-indigo-50 p-8 rounded-[2.5rem] border border-indigo-100 shadow-sm space-y-4">
+                                <div class="flex items-center gap-3 text-sm font-bold text-indigo-600"><i class="fa-solid fa-clock"></i> Tool Implementation</div>
+                                <div class="flex items-center gap-3 text-sm font-bold text-indigo-600"><i class="fa-solid fa-rocket"></i> Prod Deployment</div>
+                                <div class="flex items-center gap-3 text-sm font-bold text-indigo-600"><i class="fa-solid fa-book"></i> Setup Guide</div>
+                            </div>
+                        </div>
+                        <div class="space-y-6">
+                            <h5 class="font-bold text-slate-400 text-xs uppercase tracking-widest">Phase 2: Harden (March)</h5>
+                            <div class="bg-white p-8 rounded-[2.5rem] border border-slate-200 shadow-inner space-y-4">
+                                <div class="flex items-center gap-3 text-sm font-bold text-slate-400"><i class="fa-solid fa-circle-plus"></i> 15-20 more tools</div>
+                                <div class="flex items-center gap-3 text-sm font-bold text-slate-400"><i class="fa-solid fa-chart-line"></i> OpenTelemetry</div>
+                                <div class="flex items-center gap-3 text-sm font-bold text-slate-400"><i class="fa-solid fa-dollar-sign"></i> Cost Tracking</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                `
+            },
+            // Slide 13: Restored Impact Cards
+            {
+                title: "Impact by the Numbers",
+                content: `
+                <div class="flex flex-col flex-1 justify-center slide-enter">
+                    <p class="text-slate-500 mb-8 font-medium">System health and coverage metrics.</p>
+                    <div class="grid grid-cols-2 md:grid-cols-3 gap-6">
+                        ${[
+                            { label: "Domain Tools", value: "25", sub: "+4 system tools", color: "indigo" },
+                            { label: "Guardrails", value: "7", sub: "G0-G6 validation", color: "blue" },
+                            { label: "Unit Tests", value: "366", sub: "21 test files", color: "emerald" },
+                            { label: "Optimization", value: "60%", sub: "Latency reduction", color: "violet" },
+                            { label: "Governance", value: "4 Tiers", sub: "Auto to Double-confirm", color: "orange" },
+                            { label: "Writes", value: "0", sub: "Unconfirmed operations", color: "rose" }
+                        ].map(m => `
+                            <div class="bg-white p-10 rounded-[2.5rem] border-b-8 border-b-${m.color}-500 shadow-lg text-center hover:translate-y-[-5px] transition-all">
+                                <div class="text-4xl font-black text-slate-900 mb-2">${m.value}</div>
+                                <div class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">${m.label}</div>
+                                <div class="text-[10px] text-${m.color}-500 font-bold italic">${m.sub}</div>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+                `
+            },
+            // Slide 14: Next Steps (Switched 1 with 4)
+            {
+                title: "Next Steps — Ready for Deployment",
+                content: `
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 py-6 slide-enter flex-1 items-center">
+                    
+                    <div class="bg-violet-600 p-8 rounded-[2.5rem] text-white shadow-2xl flex items-start gap-6 ring-8 ring-violet-50 transition-all hover:scale-105">
+                        <div class="w-12 h-12 bg-violet-400/30 rounded-2xl flex items-center justify-center font-black text-xl shadow-inner">1</div>
+                        <div class="flex-1">
+                            <div class="flex justify-between items-center mb-2">
+                                <h6 class="font-black text-lg tracking-tight">Multi-tenant Switching</h6>
+                                <span class="text-[8px] px-2 py-1 bg-violet-500 rounded-lg uppercase font-black tracking-widest border border-violet-400">IN DESIGN</span>
+                            </div>
+                            <p class="text-xs opacity-90 leading-relaxed font-medium">Per-account API key and secret resolution — enabling runtime mapping for User → Account → Swoogo context.</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-8 rounded-[2.5rem] border border-slate-100 shadow-sm flex items-start gap-6 hover:bg-slate-50 transition-colors">
+                        <div class="w-12 h-12 bg-indigo-50 rounded-2xl flex items-center justify-center font-black text-xl text-indigo-600 shadow-sm">2</div>
+                        <div>
+                            <h6 class="font-bold text-slate-900 text-lg tracking-tight">Enable CI/CD pipeline</h6>
+                            <p class="text-xs text-slate-500 mt-1 leading-relaxed">Activate YAML configs for automated deployment across staging and production clusters.</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-8 rounded-[2.5rem] border border-slate-100 shadow-sm flex items-start gap-6 hover:bg-slate-50 transition-colors">
+                        <div class="w-12 h-12 bg-indigo-50 rounded-2xl flex items-center justify-center font-black text-xl text-indigo-600 shadow-sm">3</div>
+                        <div>
+                            <h6 class="font-bold text-slate-900 text-lg tracking-tight">Production smoke tests</h6>
+                            <p class="text-xs text-slate-500 mt-1 leading-relaxed">End-to-end validation on live production Swoogo tenants with PII-safe monitoring.</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-8 rounded-[2.5rem] border border-dashed border-slate-200 shadow-sm flex items-start gap-6 opacity-60">
+                        <div class="w-12 h-12 bg-slate-50 rounded-2xl flex items-center justify-center font-black text-xl text-slate-400 shadow-sm">4</div>
+                        <div>
+                            <div class="flex justify-between items-center mb-1">
+                                <h6 class="font-bold text-slate-900 text-lg tracking-tight">Finalize create_contact</h6>
+                                <span class="text-[8px] px-2 bg-slate-200 text-slate-500 rounded uppercase font-black">OPTIONAL</span>
+                            </div>
+                            <p class="text-xs text-slate-500 mt-1 leading-relaxed italic">Secondary domain gap. Logic largely covered by registrant creation workflow.</p>
+                        </div>
+                    </div>
+
+                </div>
+                `
+            }
+        ];
+
+        let currentSlideIndex = 0;
+
+        function updateUI() {
+            const slide = slides[currentSlideIndex];
+            const content = document.getElementById('slide-content');
+            const wrapper = document.getElementById('slide-content-wrapper');
+            
+            // Render Header title if slide has it
+            let slideHTML = "";
+            if(slide.title) {
+                slideHTML = `
+                    <div class="mb-10 slide-enter">
+                        <h2 class="text-3xl md:text-5xl font-black text-slate-900 leading-tight tracking-tight">${slide.title}</h2>
+                    </div>
+                `;
+            }
+            content.innerHTML = slideHTML + slide.content;
+
+            // Update footer info
+            document.getElementById('slide-num').innerText = currentSlideIndex + 1;
+            document.getElementById('progress-bar').style.width = `${((currentSlideIndex + 1) / slides.length) * 100}%`;
+
+            // Update Dots
+            const dotsContainer = document.getElementById('nav-dots');
+            dotsContainer.innerHTML = slides.map((_, i) => `
+                <button onclick="goToSlide(${i})" class="h-1.5 rounded-full transition-all duration-300 ${i === currentSlideIndex ? 'w-10 bg-indigo-600' : 'w-2 bg-slate-200 hover:bg-slate-300'}"></button>
+            `).join('');
+            
+            wrapper.scrollTop = 0;
+        }
+
+        function nextSlide() {
+            if (currentSlideIndex < slides.length - 1) {
+                currentSlideIndex++;
+                updateUI();
+            }
+        }
+
+        function prevSlide() {
+            if (currentSlideIndex > 0) {
+                currentSlideIndex--;
+                updateUI();
+            }
+        }
+
+        function goToSlide(i) {
+            currentSlideIndex = i;
+            updateUI();
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' || e.key === ' ') nextSlide();
+            if (e.key === 'ArrowLeft') prevSlide();
+        });
+
+        // Initialize
+        updateUI();
+    </script>
+</body>
+</html>
