@@ -1,0 +1,130 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Gradients -->
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#726BEA;stop-opacity:0.08" />
+      <stop offset="100%" style="stop-color:#262966;stop-opacity:0.12" />
+    </linearGradient>
+    <linearGradient id="lavGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#726BEA" />
+      <stop offset="100%" style="stop-color:#262966" />
+    </linearGradient>
+    <linearGradient id="glowGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#726BEA;stop-opacity:0.6" />
+      <stop offset="50%" style="stop-color:#4BCDB5;stop-opacity:0.4" />
+      <stop offset="100%" style="stop-color:#F46A34;stop-opacity:0.5" />
+    </linearGradient>
+    
+    <!-- Blur filter -->
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="12" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1200" height="630" fill="#F9FAFB"/>
+  <rect width="1200" height="630" fill="url(#bgGrad)"/>
+  
+  <!-- Decorative shapes -->
+  <circle cx="950" cy="100" r="180" fill="#726BEA" opacity="0.04"/>
+  <circle cx="150" cy="480" r="120" fill="#4BCDB5" opacity="0.04"/>
+  
+  <!-- Hexagonal sparkles -->
+  <polygon points="1050,420 1070,410 1090,420 1090,440 1070,450 1050,440" fill="#F46A34" opacity="0.06"/>
+  <polygon points="250,100 265,93 280,100 280,115 265,122 250,115" fill="#726BEA" opacity="0.08"/>
+  <polygon points="780,520 792,514 804,520 804,532 792,538 780,532" fill="#4BCDB5" opacity="0.07"/>
+  
+  <circle cx="580" cy="100" r="60" fill="#726BEA" opacity="0.03"/>
+  <circle cx="350" cy="500" r="80" fill="#F46A34" opacity="0.04"/>
+  
+  <!-- Left: Middleware architecture visual -->
+  <g transform="translate(120, 180)">
+    <!-- User layer -->
+    <rect x="0" y="0" width="320" height="55" rx="18" fill="white" stroke="#4BCDB5" stroke-width="3"/>
+    <circle cx="28" cy="27.5" r="12" fill="#4BCDB5" opacity="0.2"/>
+    <text x="50" y="36" font-family="Inter, sans-serif" font-size="22" font-weight="800" fill="#262966">USER</text>
+    
+    <!-- Middleware layer (MCP - highlighted) -->
+    <g transform="translate(0, 75)">
+      <rect x="0" y="0" width="320" height="70" rx="20" fill="url(#lavGrad)" opacity="0.95" filter="url(#glow)"/>
+      <circle cx="35" cy="35" r="16" fill="white" opacity="0.3"/>
+      <text x="65" y="45" font-family="Inter, sans-serif" font-size="28" font-weight="900" fill="white">MCP SERVER</text>
+    </g>
+    
+    <!-- API layer -->
+    <g transform="translate(0, 165)">
+      <rect x="0" y="0" width="320" height="55" rx="18" fill="white" stroke="#F46A34" stroke-width="3"/>
+      <circle cx="28" cy="27.5" r="12" fill="#F46A34" opacity="0.2"/>
+      <text x="50" y="36" font-family="Inter, sans-serif" font-size="22" font-weight="800" fill="#262966">SWOOGO API</text>
+    </g>
+    
+    <!-- Connection arrows -->
+    <g stroke="url(#glowGrad)" stroke-width="4" opacity="0.7">
+      <line x1="160" y1="55" x2="160" y2="75" stroke-linecap="round"/>
+      <polygon points="160,75 155,68 165,68" fill="url(#glowGrad)"/>
+      
+      <line x1="160" y1="145" x2="160" y2="165" stroke-linecap="round"/>
+      <polygon points="160,165 155,158 165,158" fill="url(#glowGrad)"/>
+    </g>
+  </g>
+  
+  <!-- Center: Network/connectivity icon -->
+  <g transform="translate(580, 230)">
+    <circle cx="0" cy="0" r="90" fill="url(#lavGrad)" opacity="0.08" filter="url(#glow)"/>
+    
+    <!-- Modern network nodes -->
+    <g transform="scale(2.2)">
+      <!-- Central node -->
+      <circle cx="0" cy="0" r="8" fill="#726BEA"/>
+      
+      <!-- Outer nodes -->
+      <circle cx="-25" cy="-15" r="5" fill="#4BCDB5"/>
+      <circle cx="25" cy="-15" r="5" fill="#F46A34"/>
+      <circle cx="-25" cy="15" r="5" fill="#F46A34"/>
+      <circle cx="25" cy="15" r="5" fill="#4BCDB5"/>
+      
+      <!-- Connections -->
+      <line x1="0" y1="0" x2="-25" y2="-15" stroke="#726BEA" stroke-width="2" opacity="0.6"/>
+      <line x1="0" y1="0" x2="25" y2="-15" stroke="#726BEA" stroke-width="2" opacity="0.6"/>
+      <line x1="0" y1="0" x2="-25" y2="15" stroke="#726BEA" stroke-width="2" opacity="0.6"/>
+      <line x1="0" y1="0" x2="25" y2="15" stroke="#726BEA" stroke-width="2" opacity="0.6"/>
+    </g>
+  </g>
+  
+  <!-- Right: Key metrics -->
+  <g transform="translate(770, 180)">
+    <!-- Metric 1 -->
+    <rect x="0" y="0" width="180" height="100" rx="24" fill="white" stroke="#E9ECFF" stroke-width="3"/>
+    <text x="90" y="50" font-family="Inter, sans-serif" font-size="48" font-weight="900" fill="url(#lavGrad)" text-anchor="middle">29</text>
+    <text x="90" y="75" font-family="Inter, sans-serif" font-size="15" font-weight="700" fill="#64748B" text-anchor="middle" letter-spacing="0.08em">TOOLS</text>
+    
+    <!-- Metric 2 -->
+    <g transform="translate(0, 120)">
+      <rect x="0" y="0" width="180" height="100" rx="24" fill="white" stroke="#E9ECFF" stroke-width="3"/>
+      <text x="90" y="50" font-family="Inter, sans-serif" font-size="48" font-weight="900" fill="#10B981" text-anchor="middle">466</text>
+      <text x="90" y="75" font-family="Inter, sans-serif" font-size="15" font-weight="700" fill="#64748B" text-anchor="middle" letter-spacing="0.08em">TESTS</text>
+    </g>
+  </g>
+  
+  <!-- Top: Title -->
+  <g transform="translate(120, 60)">
+    <text x="0" y="0" font-family="Inter, sans-serif" font-size="58" font-weight="900" fill="#262966">Swoogo MCP</text>
+    <text x="0" y="60" font-family="Inter, sans-serif" font-size="58" font-weight="900" fill="url(#lavGrad)">Server</text>
+  </g>
+  
+  <!-- Bottom left: Badge -->
+  <g transform="translate(120, 530)">
+    <rect x="0" y="0" width="280" height="48" rx="24" fill="#E9ECFF"/>
+    <text x="140" y="31" font-family="Inter, sans-serif" font-size="15" font-weight="900" fill="#726BEA" text-anchor="middle" letter-spacing="0.15em">ENTERPRISE-GRADE</text>
+  </g>
+  
+  <!-- Bottom right: Security badge -->
+  <g transform="translate(880, 540)">
+    <circle cx="15" cy="15" r="15" fill="#726BEA"/>
+    <text x="40" y="22" font-family="Inter, sans-serif" font-size="20" font-weight="900" fill="#262966">4 LAYERS</text>
+  </g>
+</svg>

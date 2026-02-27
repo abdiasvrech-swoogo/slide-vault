@@ -1,0 +1,1164 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Integration Guidance — Swoogo MCP</title>
+    <link rel="icon" type="image/png" href="../../assets/logo/logo-icon.png" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Integration Guidance — Swoogo MCP" />
+    <meta
+      property="og:description"
+      content="From Simple Prompts to Correct Forms — Composable technical guides with ~30,000 tokens saved per session"
+    />
+    <meta
+      property="og:image"
+      content="/presentations/integration-guidance-tool/image.png"
+    />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Integration Guidance — Swoogo MCP" />
+    <meta
+      name="twitter:description"
+      content="From Simple Prompts to Correct Forms — Composable technical guides with ~30,000 tokens saved per session"
+    />
+    <meta
+      name="twitter:image"
+      content="/presentations/integration-guidance-tool/image.png"
+    />
+
+    <!-- Fonts & Icons -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              swoogo: {
+                lavender: "#726BEA",
+                pacific: "#262966",
+                mist: "#E9ECFF",
+                chalk: "#F5F5FA",
+                snow: "#F9FAFB",
+                flame: "#F46A34",
+                glow: "#EE8252",
+                teal: "#4BCDB5",
+                bermuda: "#A0F1E2",
+              },
+            },
+            fontFamily: {
+              sans: ["Inter", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+
+    <style>
+      body {
+        font-family: "Inter", sans-serif;
+        background-color: #f9fafb;
+        overflow: hidden;
+      }
+
+      .gradient-text {
+        background: linear-gradient(135deg, #726bea, #262966);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      .slide {
+        display: none;
+        opacity: 0;
+        transition: opacity 0.4s ease-in-out;
+      }
+
+      .slide.active {
+        display: flex;
+        opacity: 1;
+      }
+
+      .nav-dot.active {
+        background-color: #726bea;
+        width: 1.5rem;
+      }
+
+      .micro-label {
+        font-size: 10px;
+        font-weight: 900;
+        text-transform: uppercase;
+        letter-spacing: 0.15em;
+      }
+
+      /* Animations */
+      @keyframes slideInUp {
+        from {
+          transform: translateY(20px);
+          opacity: 0;
+        }
+        to {
+          transform: translateY(0);
+          opacity: 1;
+        }
+      }
+
+      .animate-up {
+        animation: slideInUp 0.5s forwards;
+      }
+
+      pre {
+        scrollbar-width: none;
+      }
+      pre::-webkit-scrollbar {
+        display: none;
+      }
+    </style>
+  </head>
+  <body class="text-swoogo-pacific">
+    <!-- Header / Progress Bar -->
+    <div class="fixed top-0 left-0 w-full z-50">
+      <div
+        id="progress-bar"
+        class="h-[1.5px] bg-swoogo-lavender transition-all duration-300"
+        style="width: 0%"
+      ></div>
+      <div class="flex justify-between items-center p-5 sm:p-8">
+        <img
+          src="../../assets/logo/logo-full.svg"
+          alt="Swoogo"
+          class="h-5 sm:h-7"
+        />
+        <div class="flex items-center gap-4">
+          <span
+            id="slide-counter"
+            class="text-xs font-bold text-slate-400 tracking-widest"
+            >01 / 17</span
+          >
+        </div>
+      </div>
+    </div>
+
+    <!-- Navigation Dots (Desktop) -->
+    <div
+      class="hidden lg:flex fixed right-8 top-1/2 -translate-y-1/2 flex-col gap-3 z-50"
+    >
+      <!-- Dots injected by JS -->
+    </div>
+
+    <!-- Main Container -->
+    <main
+      id="presentation-container"
+      class="h-screen w-full relative flex items-center justify-center overflow-hidden p-5 sm:p-8 md:p-12 lg:p-16"
+    >
+      <!-- Slide 1: Cover -->
+      <section
+        class="slide active flex-col items-center text-center w-full max-w-5xl"
+        data-type="cover"
+      >
+        <div class="mb-8 p-6 bg-swoogo-mist rounded-full animate-up">
+          <i class="fa-solid fa-route text-5xl text-swoogo-lavender"></i>
+        </div>
+        <h1
+          class="text-5xl md:text-7xl font-black mb-4 animate-up"
+          style="animation-delay: 0.1s"
+        >
+          Integration <span class="gradient-text">Guidance</span>
+        </h1>
+        <p
+          class="text-xl md:text-2xl text-slate-500 font-medium mb-12 animate-up"
+          style="animation-delay: 0.2s"
+        >
+          From Simple Prompts to Correct Forms
+        </p>
+        <div
+          class="flex flex-wrap justify-center gap-4 animate-up"
+          style="animation-delay: 0.3s"
+        >
+          <span
+            class="px-4 py-2 bg-swoogo-mist text-swoogo-lavender rounded-full text-xs font-black uppercase tracking-widest"
+            >MCP Server</span
+          >
+          <span
+            class="px-4 py-2 bg-swoogo-mist text-swoogo-lavender rounded-full text-xs font-black uppercase tracking-widest"
+            >Token Efficiency</span
+          >
+          <span
+            class="px-4 py-2 bg-swoogo-mist text-swoogo-lavender rounded-full text-xs font-black uppercase tracking-widest"
+            >v1.1.0</span
+          >
+        </div>
+      </section>
+
+      <!-- Slide 2: Goals Achieved -->
+      <section class="slide flex-col w-full max-w-6xl" data-type="metrics">
+        <div class="mb-12">
+          <span class="micro-label text-swoogo-teal">The Vision</span>
+          <h2 class="text-4xl font-black mt-2">6 Goals, 6 Achieved</h2>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div
+            class="p-6 bg-white rounded-3xl border-2 border-emerald-100 shadow-sm flex items-center gap-4"
+          >
+            <div
+              class="w-10 h-10 rounded-full bg-emerald-500 text-white flex items-center justify-center flex-shrink-0"
+            >
+              <i class="fa-solid fa-check"></i>
+            </div>
+            <p class="font-bold">
+              Build Registration Forms with a single prompt
+            </p>
+          </div>
+          <div
+            class="p-6 bg-white rounded-3xl border border-slate-100 shadow-sm flex items-center gap-4"
+          >
+            <div
+              class="w-10 h-10 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center flex-shrink-0"
+            >
+              <i class="fa-solid fa-check"></i>
+            </div>
+            <p class="font-bold text-sm">Filter content by scope</p>
+          </div>
+          <div
+            class="p-6 bg-white rounded-3xl border border-slate-100 shadow-sm flex items-center gap-4"
+          >
+            <div
+              class="w-10 h-10 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center flex-shrink-0"
+            >
+              <i class="fa-solid fa-check"></i>
+            </div>
+            <p class="font-bold text-sm">Guaranteed determinism</p>
+          </div>
+          <div
+            class="p-6 bg-white rounded-3xl border border-slate-100 shadow-sm flex items-center gap-4"
+          >
+            <div
+              class="w-10 h-10 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center flex-shrink-0"
+            >
+              <i class="fa-solid fa-check"></i>
+            </div>
+            <p class="font-bold text-sm">Prevented secret leaks</p>
+          </div>
+          <div
+            class="p-6 bg-white rounded-3xl border border-slate-100 shadow-sm flex items-center gap-4"
+          >
+            <div
+              class="w-10 h-10 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center flex-shrink-0"
+            >
+              <i class="fa-solid fa-check"></i>
+            </div>
+            <p class="font-bold text-sm">API & CLI Mode Support</p>
+          </div>
+          <div
+            class="p-6 bg-white rounded-3xl border border-slate-100 shadow-sm flex items-center gap-4"
+          >
+            <div
+              class="w-10 h-10 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center flex-shrink-0"
+            >
+              <i class="fa-solid fa-check"></i>
+            </div>
+            <p class="font-bold text-sm text-slate-600">
+              Domain discovery without docs
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Slide 3: Practical Example -->
+      <section class="slide flex-col w-full max-w-6xl" data-type="process">
+        <div class="mb-8">
+          <span class="micro-label text-swoogo-lavender"
+            >Real-World Application</span
+          >
+          <h2 class="text-4xl font-black mt-2">Prompt → Functional Code</h2>
+        </div>
+        <div class="grid grid-cols-1 lg:grid-cols-4 gap-4 items-stretch">
+          <div
+            class="p-6 bg-white rounded-2xl border border-slate-100 flex flex-col gap-3 shadow-sm"
+          >
+            <div class="font-black text-xs text-swoogo-lavender">
+              01. USER WRITES
+            </div>
+            <pre
+              class="text-[10px] bg-slate-50 p-2 rounded overflow-x-auto text-slate-600 italic"
+            >
+"Generate the Registration Form 
+for Event 12345 using the 
+Swoogo MCP"</pre
+            >
+          </div>
+          <div
+            class="p-6 bg-white rounded-2xl border border-slate-100 flex flex-col gap-3 shadow-sm"
+          >
+            <div class="font-black text-xs text-swoogo-lavender">
+              02. LLM ACTS
+            </div>
+            <p class="text-xs text-slate-500">
+              Infers "registration" scope and pulls the exact guide for that
+              domain.
+            </p>
+          </div>
+          <div
+            class="p-6 bg-white rounded-2xl border border-slate-100 flex flex-col gap-3 shadow-sm"
+          >
+            <div class="font-black text-xs text-swoogo-lavender">
+              03. LLM SUGGESTS
+            </div>
+            <p class="text-xs text-slate-600 font-medium">
+              "This event has paid reg-types. Should I include payments? Or
+              session tracks?"
+            </p>
+          </div>
+          <!-- Fixed Result Card -->
+          <div
+            class="p-5 bg-swoogo-pacific rounded-2xl text-white flex flex-col gap-2 shadow-xl relative overflow-hidden"
+          >
+            <div
+              class="font-black text-[10px] text-swoogo-bermuda relative z-10 uppercase tracking-widest"
+            >
+              04. Result
+            </div>
+            <p
+              class="text-[11px] font-bold leading-relaxed relative z-10 pr-12"
+            >
+              Complete Registration Form generated with real data. <br />
+              <span class="text-swoogo-bermuda">First attempt success.</span>
+            </p>
+            <i
+              class="fa-solid fa-rocket absolute -right-2 -bottom-2 text-6xl text-swoogo-bermuda opacity-20 rotate-12 transition-transform group-hover:scale-110"
+            ></i>
+          </div>
+        </div>
+      </section>
+
+      <!-- Slide 4: The Problem -->
+      <section class="slide flex-col w-full max-w-6xl" data-type="triad">
+        <div class="mb-12">
+          <span class="micro-label text-swoogo-flame">The Friction</span>
+          <h2 class="text-4xl font-black mt-2">
+            The Documentation Overload Problem
+          </h2>
+          <p class="text-slate-500 mt-1">
+            Why raw, static documentation leads to integration friction.
+          </p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div
+            class="bg-white p-8 rounded-3xl border border-slate-100 shadow-sm"
+          >
+            <div
+              class="w-12 h-12 bg-red-50 text-red-500 rounded-xl flex items-center justify-center mb-6"
+            >
+              <i class="fa-solid fa-coins text-xl"></i>
+            </div>
+            <h3 class="text-xl font-bold mb-4">Token Waste</h3>
+            <ul class="text-slate-500 space-y-3">
+              <li>Dumping 100% of docs for a 10% task</li>
+              <li>29% unnecessary tokens per request</li>
+            </ul>
+          </div>
+          <div
+            class="bg-white p-8 rounded-3xl border border-slate-100 shadow-sm"
+          >
+            <div
+              class="w-12 h-12 bg-amber-50 text-amber-500 rounded-xl flex items-center justify-center mb-6"
+            >
+              <i class="fa-solid fa-microchip text-xl"></i>
+            </div>
+            <h3 class="text-xl font-bold mb-4">Context Chaos</h3>
+            <ul class="text-slate-500 space-y-3">
+              <li>LLM mixes reporting docs with registration docs</li>
+              <li>Result: API Endpoint hallucinations</li>
+            </ul>
+          </div>
+          <div
+            class="bg-white p-8 rounded-3xl border border-slate-100 shadow-sm"
+          >
+            <div
+              class="w-12 h-12 bg-orange-50 text-swoogo-flame rounded-xl flex items-center justify-center mb-6"
+            >
+              <i class="fa-solid fa-rotate text-xl"></i>
+            </div>
+            <h3 class="text-xl font-bold mb-4">Correction Loops</h3>
+            <ul class="text-slate-500 space-y-3">
+              <li>Code fails due to wrong API version/pattern</li>
+              <li>3k-5k tokens per rework loop</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- Slide 5: The Solution -->
+      <section class="slide flex-col w-full max-w-5xl" data-type="bullets">
+        <div class="mb-12">
+          <span class="micro-label text-swoogo-teal">The Middleware</span>
+          <h2 class="text-4xl font-black mt-2">swoogo-integration-guide</h2>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+          <ul class="space-y-8">
+            <li class="flex gap-4">
+              <div
+                class="mt-1 flex-shrink-0 w-6 h-6 rounded-full bg-swoogo-lavender text-white flex items-center justify-center text-xs"
+              >
+                <i class="fa-solid fa-check"></i>
+              </div>
+              <div>
+                <p class="font-bold">Composable documentation</p>
+                <p class="text-slate-500">
+                  The host receives only the docs it needs to finish the task.
+                </p>
+              </div>
+            </li>
+            <li class="flex gap-4">
+              <div
+                class="mt-1 flex-shrink-0 w-6 h-6 rounded-full bg-swoogo-lavender text-white flex items-center justify-center text-xs"
+              >
+                <i class="fa-solid fa-check"></i>
+              </div>
+              <div>
+                <p class="font-bold">Protocol in two phases</p>
+                <p class="text-slate-500">
+                  Discovery tools → Targeted integration instructions.
+                </p>
+              </div>
+            </li>
+            <li class="flex gap-4">
+              <div
+                class="mt-1 flex-shrink-0 w-6 h-6 rounded-full bg-swoogo-lavender text-white flex items-center justify-center text-xs"
+              >
+                <i class="fa-solid fa-check"></i>
+              </div>
+              <div>
+                <p class="font-bold">Source of Truth</p>
+                <p class="text-slate-500">
+                  Replaces unstable LLM memory with static, verified code.
+                </p>
+              </div>
+            </li>
+          </ul>
+          <div
+            class="p-8 rounded-3xl bg-swoogo-pacific text-white relative overflow-hidden"
+          >
+            <i
+              class="fa-solid fa-code absolute -right-4 -bottom-4 text-8xl opacity-10"
+            ></i>
+            <span class="micro-label text-swoogo-bermuda opacity-60"
+              >Design Principle</span
+            >
+            <p class="text-xl font-medium mt-4 leading-relaxed">
+              Static content, pre-authorized, and versioned in source control.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Slide 6: Impact -->
+      <section
+        class="slide flex-col items-center justify-center text-center w-full max-w-4xl"
+        data-type="impact"
+      >
+        <span class="micro-label text-swoogo-lavender mb-4">The Result</span>
+        <div class="text-8xl md:text-9xl font-black gradient-text mb-6">
+          ~30,000
+        </div>
+        <div class="text-3xl md:text-4xl font-bold mb-8">
+          Tokens Saved per Session
+        </div>
+        <p class="text-xl text-slate-500 max-w-2xl">
+          Cleaner context delivery + significantly higher downstream code
+          quality.
+        </p>
+      </section>
+
+      <!-- Slide 7: Composable Architecture -->
+      <section class="slide flex-col w-full max-w-6xl" data-type="architecture">
+        <div class="mb-8">
+          <h2 class="text-4xl font-black">Composable Layers</h2>
+        </div>
+
+        <div class="flex flex-col items-center space-y-4">
+          <!-- Core Layer -->
+          <div
+            class="w-full max-w-md p-5 bg-swoogo-pacific text-white rounded-2xl text-center border-b-8 border-swoogo-lavender"
+          >
+            <p
+              class="font-black text-xs uppercase tracking-widest mb-1 opacity-60"
+            >
+              CORE (Always Included)
+            </p>
+            <p class="font-bold">Architecture · Auth · Security · Pitfalls</p>
+          </div>
+
+          <div class="h-8 w-px bg-slate-300"></div>
+
+          <!-- Domain Layer -->
+          <div class="grid grid-cols-3 gap-4 w-full max-w-3xl">
+            <div
+              class="p-4 bg-white border border-slate-200 rounded-xl text-center"
+            >
+              <p class="text-xs font-black text-swoogo-lavender mb-1 uppercase">
+                DOMAIN
+              </p>
+              <p class="font-bold text-sm">Registration</p>
+            </div>
+            <div
+              class="p-4 bg-white border border-slate-200 rounded-xl text-center"
+            >
+              <p class="text-xs font-black text-swoogo-lavender mb-1 uppercase">
+                DOMAIN
+              </p>
+              <p class="font-bold text-sm">Sessions</p>
+            </div>
+            <div
+              class="p-4 bg-white border border-slate-200 rounded-xl text-center"
+            >
+              <p class="text-xs font-black text-swoogo-lavender mb-1 uppercase">
+                DOMAIN
+              </p>
+              <p class="font-bold text-sm">Speakers</p>
+            </div>
+          </div>
+
+          <div class="h-8 w-px bg-slate-300"></div>
+
+          <!-- Cross-cutting -->
+          <div
+            class="w-full max-w-lg p-5 bg-swoogo-mist text-swoogo-lavender rounded-2xl text-center border-dashed border-2 border-swoogo-lavender"
+          >
+            <p class="font-black text-xs uppercase tracking-widest mb-1">
+              CROSS-CUTTING (Conditional)
+            </p>
+            <p class="font-bold">i18n · Caching · Fees · UX</p>
+          </div>
+
+          <div class="h-8 w-px bg-slate-300"></div>
+
+          <!-- Checklist -->
+          <div
+            class="w-full max-w-md p-4 bg-swoogo-bermuda text-swoogo-pacific rounded-xl text-center font-bold uppercase tracking-tight"
+          >
+            Dynamic Step Checklist
+          </div>
+        </div>
+      </section>
+
+      <!-- Slide 8: Flow Act + Ask + Expand -->
+      <section class="slide flex-col w-full max-w-5xl" data-type="process">
+        <div class="mb-12">
+          <h2 class="text-4xl font-black">The "Act + Ask + Expand" Pattern</h2>
+        </div>
+        <div class="space-y-6">
+          <!-- Step 1 -->
+          <div class="flex gap-8 items-start">
+            <div
+              class="flex-shrink-0 w-10 h-10 bg-swoogo-lavender text-white rounded-full flex items-center justify-center font-black"
+            >
+              1
+            </div>
+            <div
+              class="flex-grow p-5 bg-white rounded-3xl border border-slate-100 shadow-sm"
+            >
+              <h3
+                class="font-bold uppercase tracking-tight text-xs text-swoogo-lavender mb-1"
+              >
+                ACT — Targeted Discovery
+              </h3>
+              <p class="text-slate-500 text-sm">
+                Infer specific scope and pull integration guide for that domain
+                only.
+              </p>
+            </div>
+          </div>
+          <!-- Step 2 -->
+          <div class="flex gap-8 items-start">
+            <div
+              class="flex-shrink-0 w-10 h-10 bg-swoogo-lavender text-white rounded-full flex items-center justify-center font-black"
+            >
+              2
+            </div>
+            <div
+              class="flex-grow p-5 bg-white rounded-3xl border border-slate-100 shadow-sm"
+            >
+              <h3
+                class="font-bold uppercase tracking-tight text-xs text-swoogo-lavender mb-1"
+              >
+                ASK — Data-Driven Prompting
+              </h3>
+              <p class="text-slate-500 text-sm">
+                Suggest next domains (e.g., payments) based on the event data
+                discovered.
+              </p>
+            </div>
+          </div>
+          <!-- Step 3 -->
+          <div class="flex gap-8 items-start">
+            <div
+              class="flex-shrink-0 w-10 h-10 bg-swoogo-lavender text-white rounded-full flex items-center justify-center font-black"
+            >
+              3
+            </div>
+            <div
+              class="flex-grow p-5 bg-white rounded-3xl border border-slate-100 shadow-sm"
+            >
+              <h3
+                class="font-bold uppercase tracking-tight text-xs text-swoogo-lavender mb-1"
+              >
+                EXPAND — Controlled Scaling
+              </h3>
+              <p class="text-slate-500 text-sm">
+                Add documents one-by-one only as the user confirms. Keeps
+                context lean.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Slide 9: Before vs. After -->
+      <section class="slide flex-col w-full max-w-6xl" data-type="comparison">
+        <div class="mb-12 flex justify-between items-end">
+          <h2 class="text-4xl font-black">Integration Experience</h2>
+          <div
+            class="px-6 py-2 bg-emerald-50 text-emerald-600 rounded-full text-xs font-black uppercase tracking-widest"
+          >
+            29% Savings
+          </div>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <!-- Before -->
+          <div
+            class="p-8 rounded-3xl bg-white border border-red-100 shadow-sm opacity-80"
+          >
+            <div class="flex items-center gap-3 mb-6 text-red-500">
+              <i class="fa-solid fa-circle-xmark"></i>
+              <span class="font-bold uppercase tracking-widest text-xs"
+                >Legacy / Generic Docs</span
+              >
+            </div>
+            <ul class="space-y-4 text-slate-500 text-sm">
+              <li class="flex gap-3">
+                <span class="text-red-400 font-bold">•</span> LLM guesses
+                endpoints
+              </li>
+              <li class="flex gap-3">
+                <span class="text-red-400 font-bold">•</span> Frequent execution
+                failures
+              </li>
+              <li class="flex gap-3">
+                <span class="text-red-400 font-bold">•</span> ~67,500 tokens in
+                15 turns
+              </li>
+            </ul>
+          </div>
+          <!-- After -->
+          <div
+            class="p-8 rounded-3xl bg-white border-2 border-swoogo-lavender shadow-xl relative"
+          >
+            <div class="flex items-center gap-3 mb-6 text-swoogo-lavender">
+              <i class="fa-solid fa-circle-check"></i>
+              <span class="font-bold uppercase tracking-widest text-xs"
+                >Targeted Smart Guide</span
+              >
+            </div>
+            <ul class="space-y-4 text-slate-600 text-sm">
+              <li class="flex gap-3">
+                <span class="text-swoogo-lavender font-bold">•</span> Verified
+                technical roadmap
+              </li>
+              <li class="flex gap-3">
+                <span class="text-swoogo-lavender font-bold">•</span> First-turn
+                success rate
+              </li>
+              <li class="font-black text-lg mt-6 text-swoogo-pacific">
+                ~48,000 tokens in 15 turns
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- Slide 10: Supported Domains -->
+      <section class="slide flex-col w-full max-w-6xl" data-type="features">
+        <div class="mb-12">
+          <h2 class="text-4xl font-black">5 Composable Domains</h2>
+        </div>
+        <div class="grid grid-cols-2 md:grid-cols-5 gap-4">
+          <div
+            class="p-6 bg-white rounded-3xl border border-slate-100 shadow-sm hover:border-swoogo-lavender transition-all group"
+          >
+            <i
+              class="fa-solid fa-user-plus text-2xl text-swoogo-lavender mb-4 group-hover:scale-110 transition-transform"
+            ></i>
+            <h3 class="font-bold mb-2">Registration</h3>
+            <p class="text-[10px] text-slate-400 leading-tight">
+              Registrants, questions, reg-types, packages
+            </p>
+          </div>
+          <div
+            class="p-6 bg-white rounded-3xl border border-slate-100 shadow-sm hover:border-swoogo-lavender transition-all group"
+          >
+            <i
+              class="fa-solid fa-calendar-days text-2xl text-swoogo-lavender mb-4 group-hover:scale-110 transition-transform"
+            ></i>
+            <h3 class="font-bold mb-2">Sessions</h3>
+            <p class="text-[10px] text-slate-400 leading-tight">
+              Sessions, attendance, track management
+            </p>
+          </div>
+          <div
+            class="p-6 bg-white rounded-3xl border border-slate-100 shadow-sm hover:border-swoogo-lavender transition-all group"
+          >
+            <i
+              class="fa-solid fa-microphone text-2xl text-swoogo-lavender mb-4 group-hover:scale-110 transition-transform"
+            ></i>
+            <h3 class="font-bold mb-2">Speakers</h3>
+            <p class="text-[10px] text-slate-400 leading-tight">
+              Speaker directory, bios, assignments
+            </p>
+          </div>
+          <div
+            class="p-6 bg-white rounded-3xl border border-slate-100 shadow-sm hover:border-swoogo-lavender transition-all group"
+          >
+            <i
+              class="fa-solid fa-address-book text-2xl text-swoogo-lavender mb-4 group-hover:scale-110 transition-transform"
+            ></i>
+            <h3 class="font-bold mb-2">Contacts</h3>
+            <p class="text-[10px] text-slate-400 leading-tight">
+              CRM integration, data privacy, GDPR
+            </p>
+          </div>
+          <div
+            class="p-6 bg-white rounded-3xl border border-slate-100 shadow-sm hover:border-swoogo-lavender transition-all group"
+          >
+            <i
+              class="fa-solid fa-chart-line text-2xl text-swoogo-lavender mb-4 group-hover:scale-110 transition-transform"
+            ></i>
+            <h3 class="font-bold mb-2">Reporting</h3>
+            <p class="text-[10px] text-slate-400 leading-tight">
+              Financial transactions, analytics metrics
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Slide 11: 17 Section Contract -->
+      <section class="slide flex-col w-full max-w-6xl" data-type="metrics">
+        <div class="mb-12">
+          <h2 class="text-4xl font-black">Deterministic Guardrails</h2>
+        </div>
+        <div class="grid grid-cols-2 lg:grid-cols-3 gap-6">
+          <div
+            class="p-8 bg-white rounded-3xl border-b-8 border-swoogo-lavender shadow-sm"
+          >
+            <div class="text-5xl font-black gradient-text mb-2">17</div>
+            <p class="font-bold text-slate-600">Fixed Sections</p>
+          </div>
+          <div
+            class="p-8 bg-white rounded-3xl border-b-8 border-swoogo-pacific shadow-sm"
+          >
+            <div class="text-2xl font-black mb-2 uppercase tracking-widest">
+              CORE
+            </div>
+            <p class="font-bold text-slate-600">Arch, Auth, Security</p>
+          </div>
+          <div
+            class="p-8 bg-white rounded-3xl border-b-8 border-swoogo-flame shadow-sm"
+          >
+            <div class="text-2xl font-black mb-2 uppercase tracking-widest">
+              DOMAIN
+            </div>
+            <p class="font-bold text-slate-600">Relations & Logic</p>
+          </div>
+          <div
+            class="p-8 bg-white rounded-3xl border-b-8 border-swoogo-teal shadow-sm"
+          >
+            <div
+              class="text-2xl font-black mb-2 uppercase tracking-widest text-swoogo-teal"
+            >
+              CROSS
+            </div>
+            <p class="font-bold text-slate-600">i18n, Fees, UX</p>
+          </div>
+          <div
+            class="p-8 bg-white rounded-3xl border-b-8 border-emerald-500 shadow-sm"
+          >
+            <div
+              class="text-5xl font-black gradient-text mb-2 text-emerald-600"
+            >
+              100%
+            </div>
+            <p class="font-bold text-slate-600">Reliability Coverage</p>
+          </div>
+          <div
+            class="p-8 bg-white rounded-3xl border-b-8 border-slate-200 shadow-sm"
+          >
+            <div class="text-3xl font-black mb-2 uppercase tracking-widest">
+              v1.1.0
+            </div>
+            <p class="font-bold text-slate-600">Semver Versioned</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Slide 12: Token Efficiency -->
+      <section class="slide flex-col w-full max-w-6xl" data-type="metrics">
+        <div class="mb-12 text-center">
+          <h2 class="text-4xl font-black">Measuring Efficiency</h2>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <!-- Card 1 -->
+          <div
+            class="bg-white p-6 lg:p-10 rounded-3xl border border-slate-100 shadow-lg text-center"
+          >
+            <span class="micro-label text-swoogo-lavender">Delivery</span>
+            <div class="text-5xl lg:text-6xl font-black my-6 gradient-text">
+              29%
+            </div>
+            <p class="text-sm text-slate-500 font-medium italic">
+              Savings vs standard guides
+            </p>
+          </div>
+          <!-- Card 2 -->
+          <div
+            class="bg-white p-6 lg:p-10 rounded-3xl border border-slate-100 shadow-lg text-center"
+          >
+            <span class="micro-label text-swoogo-lavender">Persistence</span>
+            <div
+              class="text-4xl lg:text-5xl font-black my-6 gradient-text tracking-tighter"
+            >
+              19,500
+            </div>
+            <p class="text-sm text-slate-500 font-medium italic">
+              Tokens saved over multi-turn context
+            </p>
+          </div>
+          <!-- Card 3 -->
+          <div
+            class="bg-white p-6 lg:p-10 rounded-3xl border border-slate-100 shadow-lg text-center"
+          >
+            <span class="micro-label text-swoogo-lavender">Maintenance</span>
+            <div class="text-4xl lg:text-6xl font-black my-6 gradient-text">
+              ~9,850
+            </div>
+            <p class="text-sm text-slate-500 font-medium italic">
+              Saved by eliminating manual rework
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Slide 13: Technical Decisions -->
+      <section class="slide flex-col w-full max-w-5xl" data-type="bullets">
+        <div class="mb-12">
+          <h2 class="text-4xl font-black">Engineering Guardrails</h2>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+          <ul class="space-y-8">
+            <li class="flex gap-4">
+              <i class="fa-solid fa-lock text-swoogo-lavender mt-1"></i>
+              <div>
+                <p class="font-bold">No Generative Docs</p>
+                <p class="text-slate-500 text-sm">
+                  Instructions are static and peer-reviewed, not "dreamed" by an
+                  LLM.
+                </p>
+              </div>
+            </li>
+            <li class="flex gap-4">
+              <i
+                class="fa-solid fa-shield-halved text-swoogo-lavender mt-1"
+              ></i>
+              <div>
+                <p class="font-bold">Privacy First</p>
+                <p class="text-slate-500 text-sm">
+                  Internal API structures and file paths are never exposed.
+                </p>
+              </div>
+            </li>
+          </ul>
+          <div
+            class="p-8 rounded-3xl bg-swoogo-mist text-swoogo-lavender self-center shadow-inner"
+          >
+            <p class="text-4xl font-black mb-1">65+</p>
+            <p class="font-bold uppercase text-[10px] tracking-[0.2em] mb-4">
+              Regression Tests
+            </p>
+            <p class="text-sm font-medium opacity-80">
+              Validating the contract across all combinations.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Slide 14: Testing Findings -->
+      <section class="slide flex-col w-full max-w-5xl" data-type="bullets">
+        <div class="mb-8">
+          <h2 class="text-4xl font-black">v1.1.0 — Validation Results</h2>
+          <p class="text-slate-500 mt-2">
+            Testing with live Registration Forms identified 8 critical technical
+            gaps.
+          </p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div class="space-y-4">
+            <div
+              class="p-4 bg-white rounded-xl border border-slate-100 flex gap-4 items-start shadow-sm"
+            >
+              <div class="text-amber-500">
+                <i class="fa-solid fa-circle-exclamation"></i>
+              </div>
+              <p class="text-xs font-semibold">
+                Upload mapping: <code>{attribute}</code> vs
+                <code>{fieldId}</code> fix.
+              </p>
+            </div>
+            <div
+              class="p-4 bg-white rounded-xl border border-slate-100 flex gap-4 items-start shadow-sm"
+            >
+              <div class="text-amber-500">
+                <i class="fa-solid fa-circle-exclamation"></i>
+              </div>
+              <p class="text-xs font-semibold">
+                PHP <code>json_encode</code> polymorphic pricing fix.
+              </p>
+            </div>
+            <div
+              class="p-4 bg-white rounded-xl border border-slate-100 flex gap-4 items-start shadow-sm"
+            >
+              <div class="text-amber-500">
+                <i class="fa-solid fa-circle-exclamation"></i>
+              </div>
+              <p class="text-xs font-semibold">
+                Fixed session mapping via <code>sq_*</code> linked fields.
+              </p>
+            </div>
+          </div>
+          <div
+            class="bg-swoogo-mist p-8 rounded-3xl flex flex-col justify-center text-center"
+          >
+            <p
+              class="font-black text-xl mb-1 text-swoogo-lavender uppercase tracking-tighter"
+            >
+              Stability Locked
+            </p>
+            <p class="text-xs text-swoogo-lavender font-medium opacity-70">
+              Minor version bump ensures immediate reliability for clients.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Slide 15: Roadmap -->
+      <section class="slide flex-col w-full max-w-5xl" data-type="roadmap">
+        <div class="mb-12">
+          <h2 class="text-4xl font-black">Current Momentum</h2>
+        </div>
+        <div class="relative">
+          <div class="absolute left-6 top-0 bottom-0 w-1 bg-slate-100"></div>
+
+          <div class="relative flex gap-8 mb-10 items-center">
+            <div
+              class="w-12 h-12 rounded-full bg-emerald-500 text-white flex items-center justify-center z-10 shadow-lg"
+            >
+              <i class="fa-solid fa-check"></i>
+            </div>
+            <div>
+              <h3 class="font-bold">Core Infrastructure (Done)</h3>
+              <p class="text-slate-500 text-sm">
+                5 domains, discovery protocol, 65+ unit tests.
+              </p>
+            </div>
+          </div>
+
+          <div class="relative flex gap-8 mb-10 items-center">
+            <div
+              class="w-12 h-12 rounded-full bg-emerald-500 text-white flex items-center justify-center z-10 shadow-lg"
+            >
+              <i class="fa-solid fa-check"></i>
+            </div>
+            <div>
+              <h3 class="font-bold">Technical Fixes (v1.1.0)</h3>
+              <p class="text-slate-500 text-sm">
+                8 patches validated with live Swoogo event data.
+              </p>
+            </div>
+          </div>
+
+          <div class="relative flex gap-8 items-center">
+            <div
+              class="w-12 h-12 rounded-full bg-swoogo-lavender text-white flex items-center justify-center z-10 shadow-lg animate-pulse"
+            >
+              <i class="fa-solid fa-forward"></i>
+            </div>
+            <div>
+              <h3 class="font-bold text-swoogo-lavender">
+                Integration Testing (Active)
+              </h3>
+              <p class="text-slate-500 text-sm">
+                Live validation in Claude Desktop and Cursor environments.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Slide 16: Key Value -->
+      <section
+        class="slide flex-col items-center justify-center text-center w-full max-w-4xl"
+        data-type="impact"
+      >
+        <div class="text-7xl md:text-8xl font-black gradient-text mb-6">
+          Zero Hallucinations
+        </div>
+        <div class="text-2xl md:text-3xl font-bold mb-8 text-swoogo-pacific">
+          Targeted docs are the single source of truth.
+        </div>
+        <div class="w-24 h-1 bg-swoogo-lavender mx-auto"></div>
+      </section>
+
+      <!-- Slide 17: Final Takeaway -->
+      <section
+        class="slide flex-col items-center text-center w-full max-w-4xl"
+        data-type="final"
+      >
+        <div class="mb-10 p-10 bg-white rounded-full shadow-2xl animate-up">
+          <i class="fa-solid fa-check-circle text-8xl gradient-text"></i>
+        </div>
+        <h1
+          class="text-4xl md:text-5xl font-black mb-6 animate-up leading-tight"
+        >
+          Simple Prompts to
+          <span class="text-swoogo-lavender">Correct Code</span>
+        </h1>
+        <p class="text-xl md:text-2xl text-slate-500 mb-12 animate-up">
+          Targeted · Deterministic · Efficient
+        </p>
+        <div class="animate-up">
+          <span class="micro-label text-slate-400">Environment Ref:</span>
+          <span class="text-swoogo-pacific font-black block mt-1"
+            >swoogo-integration-guide · v1.1.0</span
+          >
+        </div>
+      </section>
+    </main>
+
+    <!-- Navigation Controls -->
+    <div
+      class="fixed bottom-0 left-0 w-full p-8 flex justify-between items-center z-50"
+    >
+      <button
+        id="prev-btn"
+        class="w-12 h-12 flex items-center justify-center rounded-full bg-white border border-slate-200 text-swoogo-pacific hover:bg-slate-50 shadow-sm disabled:opacity-30 transition-all cursor-pointer"
+      >
+        <i class="fa-solid fa-arrow-left"></i>
+      </button>
+      <button
+        id="next-btn"
+        class="w-12 h-12 flex items-center justify-center rounded-full bg-swoogo-lavender text-white hover:bg-swoogo-pacific shadow-lg disabled:opacity-30 transition-all cursor-pointer"
+      >
+        <i class="fa-solid fa-arrow-right"></i>
+      </button>
+    </div>
+
+    <script>
+      const slides = document.querySelectorAll(".slide");
+      const nextBtn = document.getElementById("next-btn");
+      const prevBtn = document.getElementById("prev-btn");
+      const counter = document.getElementById("slide-counter");
+      const progressBar = document.getElementById("progress-bar");
+      const dotContainer = document.querySelector(".lg\\:flex.fixed.right-8");
+
+      let currentSlide = 0;
+      const totalSlides = slides.length;
+
+      // Initialize Dots
+      slides.forEach((_, i) => {
+        const dot = document.createElement("div");
+        dot.className = `nav-dot w-2 h-2 rounded-full bg-slate-200 cursor-pointer transition-all duration-300 ${i === 0 ? "active" : ""}`;
+        dot.onclick = () => goToSlide(i);
+        dotContainer.appendChild(dot);
+      });
+
+      const dots = document.querySelectorAll(".nav-dot");
+
+      function updateUI() {
+        slides.forEach((slide, i) => {
+          slide.classList.toggle("active", i === currentSlide);
+        });
+
+        dots.forEach((dot, i) => {
+          dot.classList.toggle("active", i === currentSlide);
+        });
+
+        counter.innerText = `${(currentSlide + 1).toString().padStart(2, "0")} / ${totalSlides}`;
+
+        const progress = ((currentSlide + 1) / totalSlides) * 100;
+        progressBar.style.width = `${progress}%`;
+
+        prevBtn.disabled = currentSlide === 0;
+        nextBtn.disabled = currentSlide === totalSlides - 1;
+      }
+
+      function goToSlide(n) {
+        currentSlide = n;
+        updateUI();
+      }
+
+      function nextSlide() {
+        if (currentSlide < totalSlides - 1) {
+          currentSlide++;
+          updateUI();
+        }
+      }
+
+      function prevSlide() {
+        if (currentSlide > 0) {
+          currentSlide--;
+          updateUI();
+        }
+      }
+
+      // Event Listeners
+      nextBtn.onclick = nextSlide;
+      prevBtn.onclick = prevSlide;
+
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "ArrowRight" || e.key === " ") nextSlide();
+        if (e.key === "ArrowLeft") prevSlide();
+      });
+
+      // Touch Swipe
+      let touchStartX = 0;
+      let touchEndX = 0;
+
+      document
+        .getElementById("presentation-container")
+        .addEventListener("touchstart", (e) => {
+          touchStartX = e.changedTouches[0].screenX;
+        });
+
+      document
+        .getElementById("presentation-container")
+        .addEventListener("touchend", (e) => {
+          touchEndX = e.changedTouches[0].screenX;
+          if (touchStartX - touchEndX > 50) nextSlide();
+          if (touchEndX - touchStartX > 50) prevSlide();
+        });
+
+      // Initial update
+      updateUI();
+    </script>
+  </body>
+</html>
