@@ -1,0 +1,1786 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Swoogo MCP — Complete Project Vision</title>
+    <base href="../../" />
+    <link rel="icon" type="image/png" href="assets/logo/logo-icon.png" />
+
+    <!-- Open Graph / Social Media -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="/presentations/mcp-swoogo-ai-vision-overview/index.html" />
+    <meta property="og:title" content="Swoogo MCP — Complete Project Vision" />
+    <meta property="og:description" content="Intelligent middleware for event management — 29 tools, 466 tests, enterprise-grade governance" />
+    <meta property="og:image" content="/presentations/mcp-swoogo-ai-vision-overview/image.png" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="/presentations/mcp-swoogo-ai-vision-overview/index.html" />
+    <meta name="twitter:title" content="Swoogo MCP — Complete Project Vision" />
+    <meta name="twitter:description" content="Intelligent middleware for event management — 29 tools, 466 tests, enterprise-grade governance" />
+    <meta name="twitter:image" content="/presentations/mcp-swoogo-ai-vision-overview/image.png" />
+
+    <!-- Fonts & Icons -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: { sans: ["Inter", "sans-serif"] },
+            colors: {
+              swoogo: {
+                lavender: "#726BEA",
+                pacific: "#262966",
+                mist: "#E9ECFF",
+                chalk: "#F5F5FA",
+                snow: "#F9FAFB",
+                flame: "#F46A34",
+                glow: "#EE8252",
+                teal: "#4BCDB5",
+                bermuda: "#A0F1E2",
+              },
+            },
+          },
+        },
+      };
+    </script>
+
+    <style>
+      body {
+        font-family: "Inter", sans-serif;
+        background-color: #f9fafb;
+        color: #262966;
+        overflow: hidden;
+      }
+      .gradient-text {
+        background: linear-gradient(135deg, #726bea, #262966);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+      .slide {
+        display: none;
+        height: 100vh;
+        width: 100vw;
+        flex-direction: column;
+        overflow-y: auto;
+        scrollbar-width: thin;
+        scrollbar-color: #726bea transparent;
+      }
+      .slide::-webkit-scrollbar {
+        width: 6px;
+      }
+      .slide::-webkit-scrollbar-thumb {
+        background: #726bea;
+        border-radius: 10px;
+      }
+
+      .slide.active {
+        display: flex;
+        animation: slideIn 0.5s ease-out;
+      }
+      @keyframes slideIn {
+        from {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .micro-label {
+        font-size: 10px;
+        font-weight: 900;
+        text-transform: uppercase;
+        letter-spacing: 0.15em;
+      }
+      .glass-card {
+        background: white;
+        border: 1px solid #f1f5f9;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05);
+        border-radius: 1.5rem;
+      }
+      .code-block {
+        background-color: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-radius: 1rem;
+        font-family: ui-monospace, monospace;
+      }
+
+      #progress-bar {
+        transition: width 0.4s ease;
+      }
+      .nav-dot.active {
+        background-color: #726bea;
+        width: 1.5rem;
+      }
+
+      /* Notion-like embed optimization */
+      .notion-center {
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 1200px;
+      }
+    </style>
+  </head>
+  <body class="antialiased">
+    <!-- Header -->
+    <header
+      class="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-8 py-6 pointer-events-none"
+    >
+      <img
+        src="assets/logo/logo-full.svg"
+        alt="Swoogo"
+        class="h-6 sm:h-8 pointer-events-auto"
+      />
+      <div class="flex items-center space-x-4 pointer-events-auto">
+        <span
+          id="slide-counter"
+          class="text-[11px] font-black text-slate-400 tracking-widest uppercase"
+          >01 / 29</span
+        >
+      </div>
+    </header>
+
+    <!-- Progress Bar -->
+    <div class="fixed top-0 left-0 right-0 z-[60] h-[2px] bg-slate-100">
+      <div id="progress-bar" class="h-full bg-swoogo-lavender w-0"></div>
+    </div>
+
+    <!-- Main Container -->
+    <main id="presentation-container" class="relative w-full h-full">
+      <!-- SLIDE 1: Cover (Notion Optimized) -->
+      <section
+        class="slide active p-8 md:p-16 justify-center items-center text-center"
+      >
+        <div class="notion-center">
+          <div
+            class="mb-10 p-8 bg-swoogo-mist rounded-full inline-block shadow-inner"
+          >
+            <i
+              class="fa-solid fa-network-wired text-6xl text-swoogo-lavender"
+            ></i>
+          </div>
+          <h1
+            class="text-6xl md:text-8xl font-black mb-6 gradient-text tracking-tighter"
+          >
+            Swoogo MCP
+          </h1>
+          <p
+            class="text-xl md:text-2xl text-slate-500 font-medium max-w-2xl mx-auto mb-12"
+          >
+            Complete Project Vision — Intelligent middleware for event
+            management
+          </p>
+          <div class="flex flex-wrap justify-center gap-3">
+            <span
+              class="px-5 py-2.5 rounded-full bg-swoogo-mist text-swoogo-lavender text-xs font-black uppercase tracking-widest"
+              >Model Context Protocol</span
+            >
+            <span
+              class="px-5 py-2.5 rounded-full bg-swoogo-mist text-swoogo-lavender text-xs font-black uppercase tracking-widest"
+              >29 Tools</span
+            >
+            <span
+              class="px-5 py-2.5 rounded-full bg-swoogo-mist text-swoogo-lavender text-xs font-black uppercase tracking-widest"
+              >466 Tests</span
+            >
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 2: What We're Building -->
+      <section
+        class="slide p-8 md:p-16 justify-center items-center text-center bg-swoogo-pacific text-white"
+      >
+        <div class="max-w-4xl">
+          <h2
+            class="text-4xl md:text-6xl font-black leading-tight mb-8 tracking-tight"
+          >
+            An MCP server that translates
+            <span class="text-swoogo-bermuda">natural language</span> into
+            correct Registration Forms
+          </h2>
+          <p
+            class="text-xl md:text-2xl text-swoogo-mist opacity-80 font-medium"
+          >
+            Middleware between Claude Desktop, Cursor, and Swoogo's REST API
+          </p>
+        </div>
+      </section>
+
+      <!-- SLIDE 3: The Core Problem -->
+      <section class="slide p-8 md:p-16" data-type="triad">
+        <div class="mt-12 notion-center">
+          <p class="micro-label text-swoogo-lavender mb-3">The Friction</p>
+          <h2 class="text-4xl font-black mb-12 tracking-tight">
+            Why users struggle with Swoogo integrations
+          </h2>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="glass-card p-10">
+              <div
+                class="w-14 h-14 bg-red-50 text-red-500 rounded-2xl flex items-center justify-center mb-8"
+              >
+                <i class="fa-solid fa-code-branch text-2xl"></i>
+              </div>
+              <h3 class="text-xl font-bold mb-4">Complex API</h3>
+              <p class="text-slate-500 text-sm leading-relaxed">
+                94+ endpoints across 13 entities. Requires mastering OAuth
+                patterns and undocumented registration edge cases.
+              </p>
+            </div>
+            <div class="glass-card p-10">
+              <div
+                class="w-14 h-14 bg-amber-50 text-amber-500 rounded-2xl flex items-center justify-center mb-8"
+              >
+                <i class="fa-solid fa-flask text-2xl"></i>
+              </div>
+              <h3 class="text-xl font-bold mb-4">Trial and Error</h3>
+              <p class="text-slate-500 text-sm leading-relaxed">
+                Users guess payload structures. Forms fail silently, leading to
+                support ticket pile-ups.
+              </p>
+            </div>
+            <div class="glass-card p-10">
+              <div
+                class="w-14 h-14 bg-purple-50 text-purple-500 rounded-2xl flex items-center justify-center mb-8"
+              >
+                <i class="fa-solid fa-brain text-2xl"></i>
+              </div>
+              <h3 class="text-xl font-bold mb-4">LLM Hallucinations</h3>
+              <p class="text-slate-500 text-sm leading-relaxed">
+                AI assistants invent endpoints or mix patterns, generating
+                valid-looking code that doesn't work.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 4: The Solution (Title Small / Compact Card) -->
+      <section class="slide p-8 md:p-16">
+        <div
+          class="mt-12 notion-center grid grid-cols-1 lg:grid-cols-2 gap-16 items-center"
+        >
+          <div>
+            <p class="micro-label text-swoogo-lavender mb-3">The Vision</p>
+            <h2 class="text-3xl font-black mb-8 leading-tight tracking-tight">
+              Intelligent middleware with complete governance
+            </h2>
+            <ul class="space-y-6">
+              <li class="flex items-start">
+                <div class="mt-1.5 mr-4 text-swoogo-lavender">
+                  <i class="fa-solid fa-circle-check"></i>
+                </div>
+                <span class="text-lg text-slate-600 font-medium"
+                  >Natural language → Protected API calls with full audit</span
+                >
+              </li>
+              <li class="flex items-start">
+                <div class="mt-1.5 mr-4 text-swoogo-lavender">
+                  <i class="fa-solid fa-circle-check"></i>
+                </div>
+                <span class="text-lg text-slate-600 font-medium"
+                  >Simplifies Registration Form creation without API
+                  knowledge</span
+                >
+              </li>
+              <li class="flex items-start">
+                <div class="mt-1.5 mr-4 text-swoogo-lavender">
+                  <i class="fa-solid fa-circle-check"></i>
+                </div>
+                <span class="text-lg text-slate-600 font-medium"
+                  >Dual transport: HTTP/SSE for apps, MCP for AI hosts</span
+                >
+              </li>
+            </ul>
+          </div>
+          <div
+            class="glass-card p-8 border-l-8 border-swoogo-lavender max-w-md shadow-xl"
+          >
+            <i
+              class="fa-solid fa-quote-left text-3xl text-swoogo-lavender mb-4"
+            ></i>
+            <p class="text-xl font-bold mb-2">
+              "Not replacing the platform — enhancing the integration
+              experience"
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 5: Metrics -->
+      <section class="slide p-8 md:p-16" data-type="metrics">
+        <div class="mt-16 text-center mb-12">
+          <p class="micro-label text-swoogo-lavender mb-2">Verification</p>
+          <h2 class="text-4xl font-black">Project by numbers</h2>
+        </div>
+        <div class="grid grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
+          <div
+            class="glass-card p-8 border-b-8 border-swoogo-lavender flex flex-col items-center"
+          >
+            <span class="text-5xl font-black gradient-text mb-2">29</span>
+            <span
+              class="text-xs font-black uppercase text-slate-400 tracking-widest text-center"
+              >Tools Implemented<br />(25 domain + 4 system)</span
+            >
+          </div>
+          <div
+            class="glass-card p-8 border-b-8 border-swoogo-teal flex flex-col items-center"
+          >
+            <span class="text-5xl font-black gradient-text mb-2">466</span>
+            <span
+              class="text-xs font-black uppercase text-slate-400 tracking-widest text-center"
+              >Tests Across<br />25 Files</span
+            >
+          </div>
+          <div
+            class="glass-card p-8 border-b-8 border-swoogo-flame flex flex-col items-center"
+          >
+            <span class="text-5xl font-black gradient-text mb-2">13</span>
+            <span
+              class="text-xs font-black uppercase text-slate-400 tracking-widest text-center"
+              >Entities Covered<br />(Events, Regs, etc.)</span
+            >
+          </div>
+          <div
+            class="glass-card p-8 border-b-8 border-indigo-400 flex flex-col items-center"
+          >
+            <span class="text-5xl font-black gradient-text mb-2">8</span>
+            <span
+              class="text-xs font-black uppercase text-slate-400 tracking-widest text-center"
+              >Security Guardrails<br />(G0-G7)</span
+            >
+          </div>
+          <div
+            class="glass-card p-8 border-b-8 border-amber-400 flex flex-col items-center"
+          >
+            <span class="text-5xl font-black gradient-text mb-2">4</span>
+            <span
+              class="text-xs font-black uppercase text-slate-400 tracking-widest text-center"
+              >LLM Providers<br />Supported</span
+            >
+          </div>
+          <div
+            class="glass-card p-8 border-b-8 border-emerald-400 flex flex-col items-center"
+          >
+            <span class="text-5xl font-black gradient-text mb-2">2</span>
+            <span
+              class="text-xs font-black uppercase text-slate-400 tracking-widest text-center"
+              >Transports<br />(HTTP/SSE + MCP)</span
+            >
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 7: Execution Pipeline -->
+      <section class="slide p-8 md:p-16">
+        <div class="mt-12 notion-center">
+          <p class="micro-label text-swoogo-lavender mb-3">Security Cycle</p>
+          <h2 class="text-4xl font-black mb-12">
+            From tool call to result — 5 Governance Checks
+          </h2>
+          <div class="grid grid-cols-1 md:grid-cols-5 gap-4">
+            <div
+              class="glass-card p-6 border-t-4 border-red-500 text-center flex flex-col items-center"
+            >
+              <span
+                class="w-10 h-10 rounded-full bg-swoogo-lavender text-white flex items-center justify-center font-black mb-4"
+                >1</span
+              >
+              <h4 class="font-bold text-sm mb-2">Blocklist</h4>
+              <p class="text-[10px] text-slate-400 italic leading-tight">
+                G1: Deny drop, truncate, purge
+              </p>
+            </div>
+            <div
+              class="glass-card p-6 border-t-4 border-amber-500 text-center flex flex-col items-center"
+            >
+              <span
+                class="w-10 h-10 rounded-full bg-swoogo-lavender text-white flex items-center justify-center font-black mb-4"
+                >2</span
+              >
+              <h4 class="font-bold text-sm mb-2">Tiers</h4>
+              <p class="text-[10px] text-slate-400 italic leading-tight">
+                Compute risk-based level
+              </p>
+            </div>
+            <div
+              class="glass-card p-6 border-t-4 border-blue-500 text-center flex flex-col items-center"
+            >
+              <span
+                class="w-10 h-10 rounded-full bg-swoogo-lavender text-white flex items-center justify-center font-black mb-4"
+                >3</span
+              >
+              <h4 class="font-bold text-sm mb-2">Access</h4>
+              <p class="text-[10px] text-slate-400 italic leading-tight">
+                Check tenant maximums
+              </p>
+            </div>
+            <div
+              class="glass-card p-6 border-t-4 border-orange-500 text-center flex flex-col items-center"
+            >
+              <span
+                class="w-10 h-10 rounded-full bg-swoogo-lavender text-white flex items-center justify-center font-black mb-4"
+                >4</span
+              >
+              <h4 class="font-bold text-sm mb-2">HITL</h4>
+              <p class="text-[10px] text-slate-400 italic leading-tight">
+                Tier 2/3 pause/confirm
+              </p>
+            </div>
+            <div
+              class="glass-card p-6 border-t-4 border-emerald-500 text-center flex flex-col items-center"
+            >
+              <span
+                class="w-10 h-10 rounded-full bg-swoogo-lavender text-white flex items-center justify-center font-black mb-4"
+                >5</span
+              >
+              <h4 class="font-bold text-sm mb-2">Limits</h4>
+              <p class="text-[10px] text-slate-400 italic leading-tight">
+                Rate-limit enforcement
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 8: Security Layers -->
+      <section class="slide p-8 md:p-16">
+        <div
+          class="mt-12 notion-center flex flex-col lg:flex-row gap-16 items-center"
+        >
+          <div class="lg:w-1/2">
+            <p class="micro-label text-swoogo-lavender mb-3">
+              Defense in Depth
+            </p>
+            <h2 class="text-5xl font-black mb-10 tracking-tight leading-tight">
+              Multi-Layer Hardening
+            </h2>
+            <p class="text-xl text-slate-500 leading-relaxed">
+              Identity validation, governance policy, business logic delegate,
+              and user confirmation gate.
+            </p>
+          </div>
+          <div class="w-full md:w-1/2 space-y-4">
+            <div
+              class="bg-blue-600 text-white p-6 rounded-2xl shadow-lg transform hover:scale-105 transition"
+            >
+              <div class="flex justify-between items-center mb-2">
+                <span
+                  class="font-black text-xs uppercase tracking-widest opacity-80"
+                  >Layer 1</span
+                >
+                <i class="fa-solid fa-fingerprint"></i>
+              </div>
+              <h4 class="text-xl font-bold">IDENTITY</h4>
+              <p class="text-sm opacity-80">
+                OAuth 2.1 + Token revocation by epoch (Redis)
+              </p>
+            </div>
+            <div
+              class="bg-purple-600 text-white p-6 rounded-2xl shadow-lg transform hover:scale-105 transition"
+            >
+              <div class="flex justify-between items-center mb-2">
+                <span
+                  class="font-black text-xs uppercase tracking-widest opacity-80"
+                  >Layer 2</span
+                >
+                <i class="fa-solid fa-gavel"></i>
+              </div>
+              <h4 class="text-xl font-bold">GOVERNANCE</h4>
+              <p class="text-sm opacity-80">
+                Blocklist + Tier check + Rate limit at ToolExecutor
+              </p>
+            </div>
+            <div
+              class="bg-emerald-600 text-white p-6 rounded-2xl shadow-lg transform hover:scale-105 transition"
+            >
+              <div class="flex justify-between items-center mb-2">
+                <span
+                  class="font-black text-xs uppercase tracking-widest opacity-80"
+                  >Layer 3</span
+                >
+                <i class="fa-solid fa-building"></i>
+              </div>
+              <h4 class="text-xl font-bold">BUSINESS</h4>
+              <p class="text-sm opacity-80">
+                Delegated to Swoogo API (403/404 normalized)
+              </p>
+            </div>
+            <div
+              class="bg-orange-600 text-white p-6 rounded-2xl shadow-lg transform hover:scale-105 transition"
+            >
+              <div class="flex justify-between items-center mb-2">
+                <span
+                  class="font-black text-xs uppercase tracking-widest opacity-80"
+                  >Layer 4</span
+                >
+                <i class="fa-solid fa-user-check"></i>
+              </div>
+              <h4 class="text-xl font-bold">CONFIRMATION</h4>
+              <p class="text-sm opacity-80">
+                HITL for Tier 2/3: pending → approved/rejected
+              </p>
+            </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 9: Tiers (0, 2, 3) -->
+      <section class="slide p-8 md:p-16">
+        <div class="mt-12 text-center notion-center">
+          <h2 class="text-4xl font-black mb-16 tracking-tight">
+            Auto-execute, confirm, double-confirm
+          </h2>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+            <div
+              class="glass-card p-10 border-t-8 border-emerald-500 bg-slate-50/50"
+            >
+              <i class="fa-solid fa-eye text-3xl text-emerald-500 mb-8"></i>
+              <h4 class="text-2xl font-black mb-4">Tier 0 (Read)</h4>
+              <p
+                class="text-sm text-slate-400 mb-6 font-black uppercase tracking-widest"
+              >
+                17 tools
+              </p>
+              <p class="text-xs text-slate-500 leading-relaxed italic">
+                Automated execution for all data fetching and conflict
+                detections.
+              </p>
+              <div class="flex flex-wrap gap-2">
+                <span
+                  class="px-2 py-1 bg-slate-100 text-[10px] rounded font-bold"
+                  >swoogo-events</span
+                >
+                <span
+                  class="px-2 py-1 bg-slate-100 text-[10px] rounded font-bold"
+                  >swoogo-registrants</span
+                >
+                <span
+                  class="px-2 py-1 bg-slate-100 text-[10px] rounded font-bold"
+                  >swoogo-sessions</span
+                >
+              </div>
+            </div>
+            <div class="glass-card p-10 border-t-8 border-orange-500">
+              <i class="fa-solid fa-hand text-3xl text-orange-500 mb-8"></i>
+              <h4 class="text-2xl font-black mb-4">Tier 2 (Confirm)</h4>
+              <p
+                class="text-sm text-slate-400 mb-6 font-black uppercase tracking-widest"
+              >
+                7 tools
+              </p>
+              <p class="text-xs text-slate-500 leading-relaxed italic">
+                Write operations requiring mandatory human-in-the-loop review.
+              </p>
+              <div class="flex flex-wrap gap-2">
+                <span
+                  class="px-2 py-1 bg-slate-100 text-[10px] rounded font-bold"
+                  >create-registrant</span
+                >
+                <span
+                  class="px-2 py-1 bg-slate-100 text-[10px] rounded font-bold"
+                  >update-registrant</span
+                >
+                <span
+                  class="px-2 py-1 bg-slate-100 text-[10px] rounded font-bold"
+                  >assign-session</span
+                >
+              </div>
+            </div>
+            <div class="glass-card p-10 border-t-8 border-red-500">
+              <i class="fa-solid fa-shield-alt text-3xl text-red-500 mb-8"></i>
+              <h4 class="text-2xl font-black mb-4">Tier 3 (Finance)</h4>
+              <p
+                class="text-sm text-slate-400 mb-6 font-black uppercase tracking-widest"
+              >
+                1 tool
+              </p>
+              <p class="text-xs text-slate-500 leading-relaxed italic">
+                High-risk, immutable record creation for financial transactions.
+              </p>
+              <div class="flex flex-wrap gap-2">
+                <span
+                  class="px-2 py-1 bg-slate-100 text-[10px] rounded font-bold"
+                  >create-transaction</span
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 10: Guardrails -->
+      <section class="slide p-8 md:p-16">
+        <div
+          class="mt-12 notion-center grid grid-cols-1 md:grid-cols-2 gap-20 items-center"
+        >
+          <div>
+            <h2 class="text-4xl font-black mb-8">
+              8 guardrails, 2+ enforcement layers each
+            </h2>
+            <div class="space-y-6">
+              <div class="flex gap-4">
+                <div
+                  class="flex-shrink-0 w-12 h-12 bg-swoogo-mist rounded-xl flex items-center justify-center text-swoogo-lavender font-black"
+                >
+                  G0
+                </div>
+                <div>
+                  <h4 class="font-bold">Data Accuracy</h4>
+                  <p class="text-sm text-slate-500">
+                    Never hallucinate IDs. Prompt + pre-validation + API
+                    enforcement.
+                  </p>
+                </div>
+              </div>
+              <div class="flex gap-4">
+                <div
+                  class="flex-shrink-0 w-12 h-12 bg-swoogo-mist rounded-xl flex items-center justify-center text-swoogo-lavender font-black"
+                >
+                  G1
+                </div>
+                <div>
+                  <h4 class="font-bold">No Delete</h4>
+                  <p class="text-sm text-slate-500">
+                    Block destructive ops. Governance blocklist + system prompt.
+                  </p>
+                </div>
+              </div>
+              <div class="flex gap-4">
+                <div
+                  class="flex-shrink-0 w-12 h-12 bg-swoogo-mist rounded-xl flex items-center justify-center text-swoogo-lavender font-black"
+                >
+                  G3
+                </div>
+                <div>
+                  <h4 class="font-bold">Write Confirmation</h4>
+                  <p class="text-sm text-slate-500">
+                    HITL gate for Tier 2+. Governance logic + prompt
+                    reinforcement.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="glass-card p-12 bg-swoogo-pacific text-white shadow-2xl relative"
+          >
+            <i
+              class="fa-solid fa-shield-virus text-6xl text-swoogo-teal mb-8"
+            ></i>
+            <p class="text-2xl font-bold leading-relaxed italic">
+              "Bypassing one layer doesn't break protection; governance is
+              redundant by design."
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 11: Composable Guides Intro -->
+      <section
+        class="slide p-8 md:p-16 justify-center items-center text-center bg-swoogo-lavender text-white"
+      >
+        <div class="max-w-4xl">
+          <h2 class="text-5xl md:text-7xl font-black leading-tight mb-8">
+            From <span class="text-swoogo-bermuda">natural language</span> to
+            registration form
+          </h2>
+          <p class="text-2xl opacity-80 mb-12 italic">
+            Composable guides save ~30,000 tokens per session by scoping
+            context.
+          </p>
+        </div>
+      </section>
+
+      <!-- SLIDE 12: Act/Ask/Expand -->
+      <section class="slide p-8 md:p-16">
+        <div class="mt-12 text-center notion-center">
+          <h2 class="text-4xl font-black mb-12">Incremental scope expansion</h2>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div
+              class="glass-card p-8 bg-swoogo-snow border-2 border-swoogo-lavender"
+            >
+              <span
+                class="text-xs font-black text-swoogo-lavender uppercase tracking-widest mb-4 block"
+                >1. ACT</span
+              >
+              <h4 class="text-xl font-black mb-4">User: "Generate Reg Form"</h4>
+              <p class="text-sm text-slate-500">
+                Host infers scope ["registration"], fetches ~3,200 tokens of
+                guide, inspects event metadata.
+              </p>
+            </div>
+            <div
+              class="glass-card p-8 bg-swoogo-snow border-2 border-swoogo-lavender"
+            >
+              <span
+                class="text-xs font-black text-swoogo-lavender uppercase tracking-widest mb-4 block"
+                >2. ASK</span
+              >
+              <h4 class="text-xl font-black mb-4">Host Analyzes Data</h4>
+              <p class="text-sm text-slate-500">
+                "This event has paid reg-types. Need payment integration?"
+                Contextual prompts based on real data.
+              </p>
+            </div>
+            <div
+              class="glass-card p-8 bg-swoogo-snow border-2 border-swoogo-lavender"
+            >
+              <span
+                class="text-xs font-black text-swoogo-lavender uppercase tracking-widest mb-4 block"
+                >3. EXPAND</span
+              >
+              <h4 class="text-xl font-black mb-4">Confirm & Scale</h4>
+              <p class="text-sm text-slate-500">
+                User confirms → host requests scope ["sessions"]. Only what's
+                needed, preventing context contamination.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 13: Guide Architecture -->
+      <section class="slide p-8 md:p-16" data-type="architecture">
+        <div class="mt-12 text-center">
+          <h2 class="text-4xl font-black mb-10">Composable layers by scope</h2>
+          <div class="max-w-2xl mx-auto flex flex-col items-center">
+            <div
+              class="w-full bg-slate-800 text-white p-4 rounded-t-xl font-bold uppercase tracking-widest text-xs"
+            >
+              CORE (Always Included)
+            </div>
+            <div class="w-full bg-slate-700 text-slate-300 p-4 mb-2 text-xs">
+              Architecture · Auth · Security · Validation · Pitfalls
+            </div>
+
+            <div class="flex justify-between w-full gap-2 mb-2">
+              <div
+                class="flex-1 bg-swoogo-lavender text-white p-4 rounded text-[10px] font-black uppercase"
+              >
+                REGISTRATION
+              </div>
+              <div
+                class="flex-1 bg-swoogo-lavender text-white p-4 rounded text-[10px] font-black uppercase"
+              >
+                SESSIONS
+              </div>
+              <div
+                class="flex-1 bg-swoogo-lavender text-white p-4 rounded text-[10px] font-black uppercase"
+              >
+                SPEAKERS
+              </div>
+            </div>
+
+            <div
+              class="w-full bg-slate-800 text-white p-4 mb-2 font-bold uppercase tracking-widest text-xs"
+            >
+              CROSS-CUTTING (Conditional)
+            </div>
+            <div class="w-full bg-slate-700 text-slate-300 p-4 mb-2 text-xs">
+              i18n · Caching · Fees · UX
+            </div>
+
+            <div
+              class="w-full bg-swoogo-teal text-white p-4 rounded-b-xl font-bold uppercase tracking-widest text-xs"
+            >
+              CHECKLIST (Adapts to scope)
+            </div>
+
+            <div class="mt-8 grid grid-cols-2 gap-4 w-full">
+              <div
+                class="glass-card p-4 text-xs font-bold text-slate-500 italic"
+              >
+                5 domains: reg, sessions, speakers, contacts, reports
+              </div>
+              <div
+                class="glass-card p-4 text-xs font-bold text-slate-500 italic"
+              >
+                No scope: "all" — forces incremental pattern
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 14: Token Efficiency -->
+      <section class="slide p-8 md:p-16" data-type="metrics">
+        <div class="mt-16 text-center mb-12">
+          <h2 class="text-4xl font-black">Measured token savings</h2>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div class="glass-card p-8 border-b-8 border-swoogo-lavender">
+            <h4
+              class="font-black text-xs uppercase tracking-widest text-slate-400 mb-4"
+            >
+              Delivery
+            </h4>
+            <p class="text-sm mb-4">
+              Registration form:
+              <span class="font-black text-swoogo-lavender">29%</span> savings
+            </p>
+            <p class="text-sm">
+              Sessions only:
+              <span class="font-black text-swoogo-lavender">44%</span> savings
+            </p>
+          </div>
+          <div class="glass-card p-8 border-b-8 border-swoogo-flame">
+            <h4
+              class="font-black text-xs uppercase tracking-widest text-slate-400 mb-4"
+            >
+              Persistent Context
+            </h4>
+            <p class="text-sm mb-2">15 turns (full): 67.5k</p>
+            <p class="text-sm mb-4">15 turns (composable): 48k</p>
+            <p class="text-2xl font-black text-swoogo-flame">
+              19,500 <span class="text-xs uppercase">saved</span>
+            </p>
+          </div>
+          <div class="glass-card p-8 border-b-8 border-swoogo-teal">
+            <h4
+              class="font-black text-xs uppercase tracking-widest text-slate-400 mb-4"
+            >
+              Downstream Quality
+            </h4>
+            <ul class="text-[11px] text-slate-500 mb-4 list-disc pl-4">
+              <li>Fewer hallucinations</li>
+              <li>No speculative calls</li>
+              <li>Fewer correction loops</li>
+            </ul>
+            <p class="text-2xl font-black text-swoogo-teal">
+              ~9,850 <span class="text-xs uppercase">saved</span>
+            </p>
+          </div>
+        </div>
+        <div class="mt-10 text-center">
+          <span
+            class="px-6 py-3 bg-swoogo-pacific text-white rounded-full font-black text-xl"
+            >Total per session: ~30,650 tokens</span
+          >
+        </div>
+      </section>
+
+      <!-- SLIDE 15: Engineering Patterns -->
+      <section class="slide p-8 md:p-16" data-type="features">
+        <div class="mt-12 text-center mb-10">
+          <h2 class="text-4xl font-black">Solving real API problems</h2>
+        </div>
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-4 max-w-5xl mx-auto">
+          <div
+            class="glass-card p-5 text-left border-l-4 border-swoogo-lavender"
+          >
+            <i class="fa-solid fa-search text-swoogo-lavender mb-3"></i>
+            <h4 class="font-bold text-sm">Fuzzy Search</h4>
+            <p class="text-[10px] text-slate-500 mt-1">
+              3-stage escalation: exact → expanded → full scan. Confidence
+              scoring.
+            </p>
+          </div>
+          <div
+            class="glass-card p-5 text-left border-l-4 border-swoogo-lavender"
+          >
+            <i class="fa-solid fa-layer-group text-swoogo-lavender mb-3"></i>
+            <h4 class="font-bold text-sm">Grouped Questions</h4>
+            <p class="text-[10px] text-slate-500 mt-1">
+              Flat API response → grouped by page. ~40% fewer tokens.
+            </p>
+          </div>
+          <div
+            class="glass-card p-5 text-left border-l-4 border-swoogo-lavender"
+          >
+            <i class="fa-solid fa-language text-swoogo-lavender mb-3"></i>
+            <h4 class="font-bold text-sm">Translation Fallback</h4>
+            <p class="text-[10px] text-slate-500 mt-1">
+              Empty "" translations → base language value. Sees labels, not
+              blank strings.
+            </p>
+          </div>
+          <div
+            class="glass-card p-5 text-left border-l-4 border-swoogo-lavender"
+          >
+            <i class="fa-solid fa-code-compare text-swoogo-lavender mb-3"></i>
+            <h4 class="font-bold text-sm">Response-Diff</h4>
+            <p class="text-[10px] text-slate-500 mt-1">
+              Only show changed fields. Detect silently ignored
+              fields/mismatches.
+            </p>
+          </div>
+          <div
+            class="glass-card p-5 text-left border-l-4 border-swoogo-lavender"
+          >
+            <i class="fa-solid fa-map text-swoogo-lavender mb-3"></i>
+            <h4 class="font-bold text-sm">Normalized Maps</h4>
+            <p class="text-[10px] text-slate-500 mt-1">
+              PHP [] vs {} distinction. Converts empty arrays to objects for
+              keyed maps.
+            </p>
+          </div>
+          <div
+            class="glass-card p-5 text-left border-l-4 border-swoogo-lavender"
+          >
+            <i
+              class="fa-solid fa-expand-arrows-alt text-swoogo-lavender mb-3"
+            ></i>
+            <h4 class="font-bold text-sm">Expand Params</h4>
+            <p class="text-[10px] text-slate-500 mt-1">
+              Hydrate relations inline: fees, speakers, location. Eliminate N+1
+              queries.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 16: Upstream Contributions -->
+      <section class="slide p-8 md:p-16" data-type="bullets">
+        <div class="mt-16 grid grid-cols-1 md:grid-cols-2 gap-12">
+          <div>
+            <h2 class="text-4xl font-black mb-8 leading-tight">
+              Improving Swoogo API for everyone
+            </h2>
+            <p class="text-slate-500 mb-8">
+              Development of the MCP server drove optimizations that benefit the
+              entire platform ecosystem.
+            </p>
+            <ul class="space-y-6">
+              <li class="flex items-start">
+                <i class="fa-solid fa-bolt text-amber-500 mt-1 mr-4"></i>
+                <div>
+                  <h4 class="font-bold">ids query parameter</h4>
+                  <p class="text-sm text-slate-500">
+                    Batch fetch (5 in 1 vs 5 calls). Applied to 30+ endpoints.
+                  </p>
+                </div>
+              </li>
+              <li class="flex items-start">
+                <i class="fa-solid fa-bolt text-amber-500 mt-1 mr-4"></i>
+                <div>
+                  <h4 class="font-bold">expand=fees</h4>
+                  <p class="text-sm text-slate-500">
+                    Inline pricing for packages/reg-types. -90% latency for
+                    pricing.
+                  </p>
+                </div>
+              </li>
+              <li class="flex items-start">
+                <i class="fa-solid fa-bolt text-amber-500 mt-1 mr-4"></i>
+                <div>
+                  <h4 class="font-bold">Registration Optimization</h4>
+                  <p class="text-sm text-slate-500">
+                    From 10+2N calls to 4-6 calls via keystone question call.
+                  </p>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <div
+            class="glass-card p-10 border-l-8 border-swoogo-teal h-fit self-center"
+          >
+            <p class="text-2xl font-bold">
+              "API improvements upstream = value for entire platform"
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 17: Case Study Optimization -->
+      <section class="slide p-8 md:p-16" data-type="comparison">
+        <div class="mt-12 text-center">
+          <h2 class="text-4xl font-black mb-10">Call optimization in action</h2>
+          <div
+            class="grid grid-cols-1 md:grid-cols-2 gap-0 max-w-5xl mx-auto shadow-2xl rounded-3xl overflow-hidden border border-slate-200"
+          >
+            <div class="bg-red-50 p-8 text-left border-r border-red-100">
+              <div class="flex items-center gap-3 mb-6">
+                <div
+                  class="w-10 h-10 bg-red-100 text-red-600 rounded-full flex items-center justify-center font-black"
+                >
+                  ?
+                </div>
+                <h3 class="text-xl font-black text-red-900">Before — Naive</h3>
+              </div>
+              <ul class="space-y-3 text-xs font-mono text-red-800">
+                <li>1. Event metadata</li>
+                <li>2. Flat question list</li>
+                <li>3. Reg-types list</li>
+                <li>4. Session list</li>
+                <li>5. Package list</li>
+                <li>6-N. Package detail × N</li>
+                <li>N+1-2N. Speaker detail × N</li>
+              </ul>
+              <div
+                class="mt-8 pt-4 border-t border-red-200 text-red-900 font-black"
+              >
+                TOTAL: 10 + 2N calls
+              </div>
+            </div>
+            <div class="bg-emerald-50 p-8 text-left">
+              <div class="flex items-center gap-3 mb-6">
+                <div
+                  class="w-10 h-10 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center font-black"
+                >
+                  ✓
+                </div>
+                <h3 class="text-xl font-black text-emerald-900 uppercase">
+                  After — Optimized
+                </h3>
+              </div>
+              <ul class="space-y-3 text-xs font-mono text-emerald-800">
+                <li>1. swoogo-events(id)</li>
+                <li>2. swoogo-event-questions(id, expand=page)</li>
+                <li>3. swoogo-packages(id, expand=fees)</li>
+                <li>4. swoogo-reg-types(id, expand=fees)</li>
+                <li>5-6. swoogo-speakers(id, expand=sessions)</li>
+              </ul>
+              <div class="mt-8 flex justify-between items-center">
+                <div class="text-emerald-900 font-black">TOTAL: 4-6 calls</div>
+                <span
+                  class="px-3 py-1 bg-emerald-600 text-white rounded text-[10px] font-black uppercase"
+                  >Savings: 60-80%</span
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 18: Tech Stack (Restored Original) -->
+      <section class="slide p-8 md:p-16">
+        <div class="mt-12 text-center notion-center">
+          <h2 class="text-5xl font-black mb-12 tracking-tight">
+            Production Tech Stack
+          </h2>
+          <div class="grid grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            <div
+              class="glass-card p-10 flex flex-col items-center hover:shadow-xl transition group"
+            >
+              <i
+                class="fa-brands fa-node-js text-5xl text-slate-800 mb-6 group-hover:scale-110 transition"
+              ></i>
+              <h4 class="font-bold text-base mb-2">Runtime</h4>
+              <p
+                class="text-[10px] text-slate-400 font-black uppercase tracking-widest"
+              >
+                Node.js 22+ LTS
+              </p>
+            </div>
+            <div
+              class="glass-card p-10 flex flex-col items-center hover:shadow-xl transition group"
+            >
+              <i
+                class="fa-solid fa-scroll text-5xl text-blue-600 mb-6 group-hover:scale-110 transition"
+              ></i>
+              <h4 class="font-bold text-base mb-2">Language</h4>
+              <p
+                class="text-[10px] text-slate-400 font-black uppercase tracking-widest"
+              >
+                TS (Strict) / Zod
+              </p>
+            </div>
+            <div
+              class="glass-card p-10 flex flex-col items-center hover:shadow-xl transition group"
+            >
+              <i
+                class="fa-solid fa-robot text-5xl text-black mb-6 group-hover:scale-110 transition"
+              ></i>
+              <h4 class="font-bold text-base mb-2">LLM SDK</h4>
+              <p
+                class="text-[10px] text-slate-400 font-black uppercase tracking-widest"
+              >
+                Vercel AI SDK v6
+              </p>
+            </div>
+            <div
+              class="glass-card p-10 flex flex-col items-center hover:shadow-xl transition group"
+            >
+              <i
+                class="fa-solid fa-gauge-high text-5xl text-orange-600 mb-6 group-hover:scale-110 transition"
+              ></i>
+              <h4 class="font-bold text-base mb-2">HTTP</h4>
+              <p
+                class="text-[10px] text-slate-400 font-black uppercase tracking-widest"
+              >
+                Fastify 5 (Schemas)
+              </p>
+            </div>
+            <div
+              class="glass-card p-10 flex flex-col items-center hover:shadow-xl transition group"
+            >
+              <i
+                class="fa-solid fa-database text-5xl text-indigo-600 mb-6 group-hover:scale-110 transition"
+              ></i>
+              <h4 class="font-bold text-base mb-2">Database</h4>
+              <p
+                class="text-[10px] text-slate-400 font-black uppercase tracking-widest"
+              >
+                PostgreSQL 17
+              </p>
+            </div>
+            <div
+              class="glass-card p-10 flex flex-col items-center hover:shadow-xl transition group"
+            >
+              <i
+                class="fa-solid fa-bolt text-5xl text-red-600 mb-6 group-hover:scale-110 transition"
+              ></i>
+              <h4 class="font-bold text-base mb-2">Cache</h4>
+              <p
+                class="text-[10px] text-slate-400 font-black uppercase tracking-widest"
+              >
+                Valkey 8 / Redis
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 19: Security Hardening -->
+      <section class="slide p-8 md:p-16" data-type="bullets">
+        <div class="mt-16 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div>
+            <h2 class="text-4xl font-black mb-8">
+              7 P0 vulnerabilities closed pre-launch
+            </h2>
+            <ul class="space-y-6">
+              <li class="flex items-start">
+                <div
+                  class="mt-1 mr-4 w-8 h-8 rounded-full bg-red-100 text-red-600 flex items-center justify-center"
+                >
+                  <i class="fa-solid fa-shield-halved"></i>
+                </div>
+                <div>
+                  <h4 class="font-bold">host_confirmed bypass</h4>
+                  <p class="text-sm text-slate-500">
+                    Malicious host could skip HITL. Moved validation to
+                    protected ExecutionContext.
+                  </p>
+                </div>
+              </li>
+              <li class="flex items-start">
+                <div
+                  class="mt-1 mr-4 w-8 h-8 rounded-full bg-red-100 text-red-600 flex items-center justify-center"
+                >
+                  <i class="fa-solid fa-shield-halved"></i>
+                </div>
+                <div>
+                  <h4 class="font-bold">Session limit race condition</h4>
+                  <p class="text-sm text-slate-500">
+                    Fixed non-atomic cap checks with Redis atomic INCR pattern.
+                  </p>
+                </div>
+              </li>
+              <li class="flex items-start">
+                <div
+                  class="mt-1 mr-4 w-8 h-8 rounded-full bg-red-100 text-red-600 flex items-center justify-center"
+                >
+                  <i class="fa-solid fa-shield-halved"></i>
+                </div>
+                <div>
+                  <h4 class="font-bold">Sanitizer bypass</h4>
+                  <p class="text-sm text-slate-500">
+                    Enhanced sanitizer against Unicode zero-width + NFKD
+                    normalization evasion.
+                  </p>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <div class="glass-card p-10 border-l-8 border-swoogo-lavender">
+            <p class="text-2xl font-bold">
+              "All 7 fixed in feat/security-hardening, each with test coverage"
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 20: UX Flow -->
+      <section class="slide p-8 md:p-16" data-type="process">
+        <div class="mt-12 text-center">
+          <h2 class="text-4xl font-black mb-10">From prompt to result</h2>
+          <div class="max-w-2xl mx-auto space-y-4 text-left">
+            <div class="glass-card p-6 border-l-4 border-slate-300">
+              <p class="micro-label mb-2">Step 1: User Prompt</p>
+              <p class="italic text-slate-600">
+                "How many registrants does Swoogo Summit have?"
+              </p>
+            </div>
+            <div class="glass-card p-6 border-l-4 border-swoogo-lavender">
+              <p class="micro-label mb-2">Step 2: System Execution</p>
+              <ul class="text-xs text-slate-500 space-y-1">
+                <li>- Fuzzy search finds "Swoogo Summit 2026" (score: 0.95)</li>
+                <li>- Counts registrants with event_id filter</li>
+              </ul>
+            </div>
+            <div class="glass-card p-6 border-l-4 border-emerald-500">
+              <p class="micro-label mb-2 text-emerald-600">Step 3: Response</p>
+              <p class="font-medium">
+                "Swoogo Summit 2026 has 847 confirmed registrants."
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 21: Phases (Define & Discovery) -->
+      <section class="slide p-8 md:p-16">
+        <div class="mt-12 notion-center">
+          <h2 class="text-5xl font-black mb-12 tracking-tight">
+            Roadmap Vision
+          </h2>
+          <div class="space-y-6">
+            <div
+              class="glass-card p-8 bg-emerald-50 border-emerald-100 flex items-center opacity-60"
+            >
+              <i class="fa-solid fa-check text-emerald-500 mr-8 text-3xl"></i>
+              <div>
+                <h4 class="font-bold text-xl mb-1 text-emerald-900 uppercase">
+                  Phase 1-3 — COMPLETED
+                </h4>
+                <p class="text-xs text-emerald-600">
+                  Foundation, 17 Read Tools, HITL Write, Security, Guidance.
+                </p>
+              </div>
+            </div>
+            <div
+              class="glass-card border-2 border-swoogo-lavender flex items-start gap-8 shadow-2xl relative"
+            >
+              <div
+                class="absolute -top-4 -left-4 bg-swoogo-lavender text-white px-6 py-2 rounded-full text-[10px] font-black uppercase tracking-widest"
+              >
+                Active
+              </div>
+              <div class="glass-card p-6 flex-1 bg-amber-50 border-amber-100">
+                <h4 class="font-bold text-amber-900 mb-2">
+                  Phase 4 — IN PROGRESS
+                </h4>
+                <div
+                  class="grid grid-cols-1 md:grid-cols-2 gap-8 text-xs text-slate-500 italic"
+                >
+                  <div>
+                    <p class="font-black text-slate-700 uppercase mb-2">
+                      Discovery Flow
+                    </p>
+                    <p>
+                      Guided execution for missing pages [Confirmation, Payment,
+                      Invoice, Logout]
+                    </p>
+                  </div>
+                  <div>
+                    <p class="font-black text-slate-700 uppercase mb-2">
+                      Registration Strategy
+                    </p>
+                    <p>
+                      Groups (parent/child `group_id`), default to `in_progress`
+                      status to enable discounts and seat reservations silently.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="glass-card p-8 flex items-center">
+              <i class="fa-solid fa-rocket text-slate-400 mr-8 text-3xl"></i>
+              <div>
+                <h4 class="font-bold text-xl mb-1 text-slate-400 uppercase">
+                  Phase 5 — SCALE
+                </h4>
+                <p class="text-xs text-slate-400 italic">
+                  SSO, Telemetry, and
+                  <strong>Improve DB Registry/Registry Analytics</strong> for
+                  better connection insights.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 22: Metrics (Restored Original Detailed Grid) -->
+      <section class="slide p-8 md:p-16">
+        <div class="mt-12 text-center notion-center">
+          <h2 class="text-5xl font-black mb-16 tracking-tight">
+            Production Codebase
+          </h2>
+          <div class="grid grid-cols-2 lg:grid-cols-3 gap-10 max-w-6xl mx-auto">
+            <div class="glass-card p-12 border-b-8 border-swoogo-lavender">
+              <span class="text-6xl font-black gradient-text mb-4 block"
+                >~60</span
+              >
+              <p class="micro-label text-slate-400">TS Files (src/)</p>
+            </div>
+            <div class="glass-card p-12 border-b-8 border-swoogo-teal">
+              <span class="text-6xl font-black gradient-text mb-4 block"
+                >25</span
+              >
+              <p class="micro-label text-slate-400">Test Files</p>
+            </div>
+            <div class="glass-card p-12 border-b-8 border-swoogo-flame">
+              <span class="text-6xl font-black gradient-text mb-4 block"
+                >466</span
+              >
+              <p class="micro-label text-slate-400">Total Tests</p>
+            </div>
+            <div class="glass-card p-12 border-b-8 border-indigo-400">
+              <span class="text-6xl font-black gradient-text mb-4 block"
+                >29</span
+              >
+              <p class="micro-label text-slate-400">Tools Implemented</p>
+            </div>
+            <div class="glass-card p-12 border-b-8 border-amber-400">
+              <span class="text-6xl font-black gradient-text mb-4 block"
+                >14</span
+              >
+              <p class="micro-label text-slate-400">ADRs Documented</p>
+            </div>
+            <div class="glass-card p-12 border-b-8 border-emerald-400">
+              <span class="text-6xl font-black gradient-text mb-4 block"
+                >~20</span
+              >
+              <p class="micro-label text-slate-400">Documentation Files</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 23: Technical Choices (Restored Original) -->
+      <section class="slide p-8 md:p-16" data-type="bullets">
+        <div class="mt-16 flex flex-col md:flex-row gap-12">
+          <div class="md:w-1/2">
+            <h2 class="text-4xl font-black mb-10 leading-tight">
+              Technical choices that shaped the architecture
+            </h2>
+            <ul class="space-y-8">
+              <li class="flex items-start">
+                <div class="mt-1 mr-4 text-swoogo-lavender text-xl">
+                  <i class="fa-solid fa-code"></i>
+                </div>
+                <div>
+                  <h4 class="font-bold">AI SDK v6 over Mastra</h4>
+                  <p class="text-sm text-slate-500">
+                    Dec 2025 release closed the gap. We extracted patterns
+                    without importing complexity.
+                  </p>
+                </div>
+              </li>
+              <li class="flex items-start">
+                <div class="mt-1 mr-4 text-swoogo-lavender text-xl">
+                  <i class="fa-solid fa-server"></i>
+                </div>
+                <div>
+                  <h4 class="font-bold">Server-driven HITL</h4>
+                  <p class="text-sm text-slate-500">
+                    AI SDK's needsApproval requires React. Our clients are
+                    headless AI hosts (Claude Desktop).
+                  </p>
+                </div>
+              </li>
+              <li class="flex items-start">
+                <div class="mt-1 mr-4 text-swoogo-lavender text-xl">
+                  <i class="fa-solid fa-lock"></i>
+                </div>
+                <div>
+                  <h4 class="font-bold">One connection per account</h4>
+                  <p class="text-sm text-slate-500">
+                    Provides natural isolation and zero cross-tenant leakage
+                    risk by design.
+                  </p>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <div class="md:w-1/2 flex items-center justify-center">
+            <div
+              class="glass-card p-10 border-l-8 border-swoogo-lavender bg-swoogo-snow"
+            >
+              <i class="fa-solid fa-lightbulb text-4xl text-amber-400 mb-6"></i>
+              <p class="text-2xl font-bold">
+                "Node.js chosen for SSE performance — 10-40x advantage over PHP
+                for streaming"
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 24: Discoveries (Restored Original) -->
+      <section class="slide p-8 md:p-16">
+        <div class="mt-12 notion-center">
+          <h2 class="text-5xl font-black mb-16 text-center tracking-tight">
+            Critical discoveries during development
+          </h2>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+            <div
+              class="glass-card p-10 border-t-8 border-swoogo-flame bg-red-50/20 shadow-xl transform hover:-translate-y-2 transition"
+            >
+              <h4 class="text-2xl font-black mb-6">Laravel Limits</h4>
+              <p class="text-sm text-slate-500 italic">
+                InvokingTool events lacked cancellation mechanisms. Forced
+                migration to Node.js for security.
+              </p>
+            </div>
+            <div
+              class="glass-card p-10 border-t-8 border-swoogo-flame bg-red-50/20 shadow-xl transform hover:-translate-y-2 transition"
+            >
+              <h4 class="text-2xl font-black mb-6">Context Bloat</h4>
+              <p class="text-sm text-slate-500 italic">
+                Monolithic documentation led AI to hallucinate. Solved with
+                composable scoping.
+              </p>
+            </div>
+            <div
+              class="glass-card p-10 border-t-8 border-swoogo-flame bg-red-50/20 shadow-xl transform hover:-translate-y-2 transition"
+            >
+              <h4 class="text-2xl font-black mb-6">Persistent Tokens</h4>
+              <p class="text-sm text-slate-500 italic">
+                MCP hosts persist sessions. Epoch-based Redis strategy ensures
+                logout actually invalidates sessions.
+              </p>
+            </div>
+          </div>
+          <div
+            class="mt-20 bg-swoogo-pacific text-white py-6 px-12 rounded-full inline-block font-black uppercase text-sm tracking-widest shadow-2xl"
+          >
+            Each problem led to architecture improvement
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 25: Value -->
+      <section class="slide p-8 md:p-16" data-type="triad">
+        <div class="mt-16 text-center mb-12">
+          <h2 class="text-4xl font-black">Value across three dimensions</h2>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div class="glass-card p-8 flex flex-col items-center">
+            <div
+              class="w-16 h-16 bg-blue-50 text-blue-600 rounded-2xl flex items-center justify-center text-2xl mb-6"
+            >
+              <i class="fa-solid fa-users"></i>
+            </div>
+            <h4 class="font-bold text-lg mb-4">For Users</h4>
+            <p class="text-sm text-slate-500 text-center">
+              Radical simplification: natural language → correct forms. No API
+              knowledge required.
+            </p>
+          </div>
+          <div class="glass-card p-8 flex flex-col items-center">
+            <div
+              class="w-16 h-16 bg-emerald-50 text-emerald-600 rounded-2xl flex items-center justify-center text-2xl mb-6"
+            >
+              <i class="fa-solid fa-box"></i>
+            </div>
+            <h4 class="font-bold text-lg mb-4">For Product</h4>
+            <p class="text-sm text-slate-500 text-center">
+              Competitive differentiation via MCP. Reduced support tickets.
+              Platform extensibility.
+            </p>
+          </div>
+          <div class="glass-card p-8 flex flex-col items-center">
+            <div
+              class="w-16 h-16 bg-purple-50 text-purple-600 rounded-2xl flex items-center justify-center text-2xl mb-6"
+            >
+              <i class="fa-solid fa-microchip"></i>
+            </div>
+            <h4 class="font-bold text-lg mb-4">For Engineering</h4>
+            <p class="text-sm text-slate-500 text-center">
+              Proven architecture. No vendor lock-in (4 providers). Reusable
+              governance patterns.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 26: Boundaries -->
+      <section class="slide p-8 md:p-16" data-type="comparison">
+        <div class="mt-12 text-center">
+          <h2 class="text-4xl font-black mb-10">What's in, what's out</h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+            <div class="glass-card p-8 text-left border-l-8 border-emerald-500">
+              <h4
+                class="font-black text-emerald-600 uppercase tracking-widest text-xs mb-6"
+              >
+                In Scope
+              </h4>
+              <ul class="space-y-3 text-sm text-slate-600 font-medium">
+                <li class="flex items-center">
+                  <i class="fa-solid fa-plus text-[10px] mr-3"></i> 29 tools /
+                  13 entities
+                </li>
+                <li class="flex items-center">
+                  <i class="fa-solid fa-plus text-[10px] mr-3"></i> Read + Write
+                  (with confirm)
+                </li>
+                <li class="flex items-center">
+                  <i class="fa-solid fa-plus text-[10px] mr-3"></i> Registration
+                  Form flow
+                </li>
+                <li class="flex items-center">
+                  <i class="fa-solid fa-plus text-[10px] mr-3"></i> Audit trail
+                  & multi-tenancy
+                </li>
+              </ul>
+            </div>
+            <div class="glass-card p-8 text-left border-l-8 border-slate-300">
+              <h4
+                class="font-black text-slate-400 uppercase tracking-widest text-xs mb-6"
+              >
+                Out of Scope
+              </h4>
+              <ul class="space-y-3 text-sm text-slate-500 font-medium">
+                <li class="flex items-center">
+                  <i class="fa-solid fa-minus text-[10px] mr-3"></i> Event
+                  creation
+                </li>
+                <li class="flex items-center">
+                  <i class="fa-solid fa-minus text-[10px] mr-3"></i> Delete
+                  operations
+                </li>
+                <li class="flex items-center">
+                  <i class="fa-solid fa-minus text-[10px] mr-3"></i> Frontend/UI
+                  components
+                </li>
+                <li class="flex items-center">
+                  <i class="fa-solid fa-minus text-[10px] mr-3"></i> Vector DB
+                  (RAG)
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 27: Risk Mitigation (Restored Original) -->
+      <section class="slide p-8 md:p-16">
+        <div
+          class="mt-12 notion-center flex flex-col md:flex-row gap-16 items-center"
+        >
+          <div class="md:w-1/2 space-y-10">
+            <h2 class="text-5xl font-black mb-12 tracking-tight leading-tight">
+              Known risks, active mitigations
+            </h2>
+            <div class="space-y-6">
+              <div
+                class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100"
+              >
+                <h4 class="font-black text-[10px] uppercase text-red-500 mb-2">
+                  Risk: Token Budget Overflow
+                </h4>
+                <p class="text-sm font-bold">
+                  Mitigation: Dynamic tool loading by domain (29 < 40 cap)
+                </p>
+              </div>
+              <div
+                class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100"
+              >
+                <h4 class="font-black text-[10px] uppercase text-red-500 mb-2">
+                  Risk: Lack of Bulk Endpoints
+                </h4>
+                <p class="text-sm font-bold">
+                  Mitigation: Sequential execution + preview tracking
+                </p>
+              </div>
+              <div
+                class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100"
+              >
+                <h4 class="font-black text-[10px] uppercase text-red-500 mb-2">
+                  Risk: Tool Hallucinations
+                </h4>
+                <p class="text-sm font-bold">
+                  Mitigation: G0 guardrail + schema validation + HITL
+                </p>
+              </div>
+            </div>
+          </div>
+          <div
+            class="md:w-1/2 bg-swoogo-pacific p-20 rounded-[4rem] text-white shadow-2xl relative overflow-hidden transform rotate-2"
+          >
+            <i
+              class="fa-solid fa-shield absolute -top-10 -right-10 text-[15rem] opacity-5"
+            ></i>
+            <p class="text-3xl font-black leading-relaxed italic relative z-10">
+              "Circuit breakers + Error normalization handle API changes
+              gracefully."
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 28: Next Steps (Point 1 Done) -->
+      <section class="slide p-8 md:p-16">
+        <div class="mt-12 notion-center text-center">
+          <h2 class="text-5xl font-black mb-16 tracking-tight">
+            Recommended actions
+          </h2>
+          <div class="max-w-3xl mx-auto space-y-4">
+            <div
+              class="glass-card p-8 flex items-center bg-emerald-50 border-emerald-100 opacity-60"
+            >
+              <i
+                class="fa-solid fa-circle-check text-emerald-500 mr-8 text-3xl"
+              ></i>
+              <p
+                class="font-black text-xl line-through text-emerald-900 uppercase"
+              >
+                Merge integration guidance enforcement
+              </p>
+            </div>
+            <div
+              class="glass-card p-8 flex items-center hover:border-swoogo-lavender transition cursor-pointer"
+            >
+              <span
+                class="w-12 h-12 rounded-2xl bg-swoogo-mist text-swoogo-lavender flex items-center justify-center font-black mr-8"
+                >2</span
+              >
+              <p class="font-black text-xl text-swoogo-pacific uppercase">
+                Validate E2E Scenario Coverage<br>
+                [ Claude Desktop | Code | Lovable ]
+              </p>
+            </div>
+            <div
+              class="glass-card p-8 flex items-center hover:border-swoogo-lavender transition cursor-pointer"
+            >
+              <span
+                class="w-12 h-12 rounded-2xl bg-swoogo-mist text-swoogo-lavender flex items-center justify-center font-black mr-8"
+                >3</span
+              >
+              <p class="font-black text-xl text-swoogo-pacific uppercase">
+                Define Phase 4 Discovery flow contract
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 29: Final (Smaller font) -->
+      <section
+        class="slide p-8 md:p-16 justify-center items-center text-center bg-swoogo-snow"
+      >
+        <div class="mb-12 p-10 bg-white rounded-[3rem] inline-block shadow-2xl">
+          <i class="fa-solid fa-check-double text-6xl gradient-text"></i>
+        </div>
+        <h2
+          class="text-4xl md:text-5xl font-black mb-10 leading-tight tracking-tight max-w-4xl"
+        >
+          Enterprise-grade middleware — from
+          <span class="gradient-text">natural language</span> to registration
+        </h2>
+        <div
+          class="h-1.5 w-24 bg-swoogo-lavender mx-auto mb-10 rounded-full"
+        ></div>
+        <p class="text-2xl text-slate-500 font-bold uppercase tracking-widest">
+          29 tools · 466 tests · 8 guardrails
+        </p>
+      </section>
+    </main>
+
+    <!-- Navigation Controls -->
+    <footer
+      class="fixed bottom-0 left-0 right-0 p-8 flex items-center justify-between z-50 pointer-events-none"
+    >
+      <div class="flex items-center space-x-3 pointer-events-auto">
+        <button
+          id="prev-btn"
+          onclick="prevSlide()"
+          class="w-14 h-14 flex items-center justify-center rounded-2xl bg-white shadow-xl border border-slate-100 text-swoogo-pacific hover:bg-slate-50 disabled:opacity-30 disabled:cursor-not-allowed"
+        >
+          <i class="fa-solid fa-chevron-left"></i>
+        </button>
+        <button
+          id="next-btn"
+          onclick="nextSlide()"
+          class="w-14 h-14 flex items-center justify-center rounded-2xl bg-white shadow-xl border border-slate-100 text-swoogo-pacific hover:bg-slate-50 disabled:opacity-30 disabled:cursor-not-allowed"
+        >
+          <i class="fa-solid fa-chevron-right"></i>
+        </button>
+      </div>
+
+      <div
+        id="nav-dots"
+        class="hidden md:flex space-x-3 pointer-events-auto"
+      ></div>
+
+      <div class="micro-label text-slate-400 font-black">
+        Swoogo MCP Vision · 2026
+      </div>
+    </footer>
+
+    <script>
+      let currentSlideIndex = 0;
+      const slides = document.querySelectorAll(".slide");
+      const counter = document.getElementById("slide-counter");
+      const progressBar = document.getElementById("progress-bar");
+      const prevBtn = document.getElementById("prev-btn");
+      const nextBtn = document.getElementById("next-btn");
+      const dotContainer = document.getElementById("nav-dots");
+
+      slides.forEach((_, i) => {
+        const dot = document.createElement("button");
+        dot.className = `nav-dot h-2 w-2 rounded-full bg-slate-200 transition-all duration-300 ${i === 0 ? "active" : ""}`;
+        dot.onclick = () => goToSlide(i);
+        dotContainer.appendChild(dot);
+      });
+
+      const dots = document.querySelectorAll(".nav-dot");
+
+      function updateUI() {
+        slides.forEach((s, i) =>
+          s.classList.toggle("active", i === currentSlideIndex),
+        );
+        dots.forEach((d, i) =>
+          d.classList.toggle("active", i === currentSlideIndex),
+        );
+        counter.innerText = `${String(currentSlideIndex + 1).padStart(2, "0")} / ${slides.length}`;
+        progressBar.style.width = `${((currentSlideIndex + 1) / slides.length) * 100}%`;
+        prevBtn.disabled = currentSlideIndex === 0;
+        nextBtn.disabled = currentSlideIndex === slides.length - 1;
+
+        // Scroll to top of slide on change
+        slides[currentSlideIndex].scrollTop = 0;
+      }
+
+      function nextSlide() {
+        if (currentSlideIndex < slides.length - 1) {
+          currentSlideIndex++;
+          updateUI();
+        }
+      }
+      function prevSlide() {
+        if (currentSlideIndex > 0) {
+          currentSlideIndex--;
+          updateUI();
+        }
+      }
+      function goToSlide(n) {
+        currentSlideIndex = n;
+        updateUI();
+      }
+
+      window.addEventListener("keydown", (e) => {
+        if (e.key === "ArrowRight" || e.key === " ") nextSlide();
+        if (e.key === "ArrowLeft") prevSlide();
+      });
+
+      let touchStartX = 0;
+      window.addEventListener(
+        "touchstart",
+        (e) => (touchStartX = e.changedTouches[0].screenX),
+      );
+      window.addEventListener("touchend", (e) => {
+        let touchEndX = e.changedTouches[0].screenX;
+        if (touchEndX < touchStartX - 50) nextSlide();
+        if (touchEndX > touchStartX + 50) prevSlide();
+      });
+
+      updateUI();
+    </script>
+  </body>
+</html>

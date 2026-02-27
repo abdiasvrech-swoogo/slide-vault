@@ -1,0 +1,123 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Gradients -->
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#726BEA;stop-opacity:0.08" />
+      <stop offset="100%" style="stop-color:#262966;stop-opacity:0.12" />
+    </linearGradient>
+    <linearGradient id="lavGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#726BEA" />
+      <stop offset="100%" style="stop-color:#262966" />
+    </linearGradient>
+    <linearGradient id="glowGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#726BEA;stop-opacity:0.6" />
+      <stop offset="50%" style="stop-color:#4BCDB5;stop-opacity:0.4" />
+      <stop offset="100%" style="stop-color:#F46A34;stop-opacity:0.5" />
+    </linearGradient>
+    
+    <!-- Blur filter for depth -->
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="12" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1200" height="630" fill="#F9FAFB"/>
+  <rect width="1200" height="630" fill="url(#bgGrad)"/>
+  
+  <!-- Decorative shapes background -->
+  <circle cx="950" cy="100" r="180" fill="#726BEA" opacity="0.04"/>
+  <circle cx="150" cy="500" r="120" fill="#4BCDB5" opacity="0.04"/>
+  
+  <!-- Hexagonal "sparkles" -->
+  <polygon points="1050,400 1070,390 1090,400 1090,420 1070,430 1050,420" fill="#F46A34" opacity="0.06"/>
+  <polygon points="280,120 295,113 310,120 310,135 295,142 280,135" fill="#726BEA" opacity="0.08"/>
+  <polygon points="750,500 762,494 774,500 774,512 762,518 750,512" fill="#4BCDB5" opacity="0.07"/>
+  
+  <!-- Additional small circles for depth -->
+  <circle cx="620" cy="120" r="60" fill="#726BEA" opacity="0.03"/>
+  <circle cx="380" cy="480" r="80" fill="#F46A34" opacity="0.04"/>
+  
+  <!-- Left side: Modern layered blocks visual -->
+  <g transform="translate(120, 160)">
+    <!-- Layer 1 - Core (big) -->
+    <rect x="0" y="0" width="380" height="75" rx="20" fill="url(#lavGrad)" opacity="0.95"/>
+    <circle cx="38" cy="37.5" r="16" fill="white" opacity="0.25"/>
+    <text x="68" y="48" font-family="Inter, sans-serif" font-size="30" font-weight="900" fill="white">CORE</text>
+    
+    <!-- Layer 2 - Domains (medium, stacked) -->
+    <g transform="translate(0, 95)">
+      <rect x="0" y="0" width="260" height="62" rx="16" fill="white" stroke="#726BEA" stroke-width="3"/>
+      <circle cx="30" cy="31" r="13" fill="#726BEA" opacity="0.15"/>
+      <text x="52" y="40" font-family="Inter, sans-serif" font-size="23" font-weight="800" fill="#262966">DOMAINS</text>
+      
+      <!-- Mini indicators -->
+      <circle cx="185" cy="31" r="6" fill="#726BEA"/>
+      <circle cx="203" cy="31" r="6" fill="#726BEA" opacity="0.4"/>
+      <circle cx="221" cy="31" r="6" fill="#726BEA" opacity="0.2"/>
+    </g>
+    
+    <!-- Layer 3 - Cross-cutting (small) -->
+    <g transform="translate(0, 175)">
+      <rect x="0" y="0" width="185" height="52" rx="14" fill="#E9ECFF"/>
+      <circle cx="26" cy="26" r="11" fill="#726BEA" opacity="0.2"/>
+      <text x="46" y="34" font-family="Inter, sans-serif" font-size="17" font-weight="800" fill="#726BEA">PLUGINS</text>
+    </g>
+    
+    <!-- Connection lines with glow -->
+    <line x1="190" y1="75" x2="130" y2="95" stroke="url(#glowGrad)" stroke-width="3" opacity="0.6" stroke-linecap="round"/>
+    <line x1="130" y1="157" x2="92" y2="175" stroke="url(#glowGrad)" stroke-width="3" opacity="0.6" stroke-linecap="round"/>
+  </g>
+  
+  <!-- Center: Large icon representing guidance/routing -->
+  <g transform="translate(580, 240)">
+    <!-- Glow circle -->
+    <circle cx="0" cy="0" r="100" fill="url(#lavGrad)" opacity="0.08" filter="url(#glow)"/>
+    
+    <!-- Modern route icon -->
+    <g transform="scale(2.5)">
+      <path d="M -15 -20 Q 0 -10 15 -20" stroke="#726BEA" stroke-width="4" fill="none" stroke-linecap="round" opacity="0.9"/>
+      <path d="M -15 0 Q 0 10 15 0" stroke="#4BCDB5" stroke-width="4" fill="none" stroke-linecap="round" opacity="0.9"/>
+      <path d="M -15 20 Q 0 30 15 20" stroke="#F46A34" stroke-width="4" fill="none" stroke-linecap="round" opacity="0.9"/>
+      
+      <!-- Dots -->
+      <circle cx="-15" cy="-20" r="3" fill="#726BEA"/>
+      <circle cx="15" cy="-20" r="3" fill="#726BEA"/>
+      <circle cx="-15" cy="0" r="3" fill="#4BCDB5"/>
+      <circle cx="15" cy="0" r="3" fill="#4BCDB5"/>
+      <circle cx="-15" cy="20" r="3" fill="#F46A34"/>
+      <circle cx="15" cy="20" r="3" fill="#F46A34"/>
+    </g>
+  </g>
+  
+  <!-- Right side: Key metric - large and bold -->
+  <g transform="translate(810, 240)">
+    <rect x="0" y="0" width="260" height="160" rx="30" fill="white" stroke="#E9ECFF" stroke-width="3"/>
+    
+    <!-- Giant number -->
+    <text x="130" y="100" font-family="Inter, sans-serif" font-size="90" font-weight="900" fill="url(#lavGrad)" text-anchor="middle">29%</text>
+    <text x="130" y="135" font-family="Inter, sans-serif" font-size="16" font-weight="700" fill="#64748B" text-anchor="middle" letter-spacing="0.08em">TOKEN SAVINGS</text>
+  </g>
+  
+  <!-- Top: Title -->
+  <g transform="translate(100, 60)">
+    <text x="0" y="0" font-family="Inter, sans-serif" font-size="62" font-weight="900" fill="#262966">Integration</text>
+    <text x="0" y="65" font-family="Inter, sans-serif" font-size="62" font-weight="900" fill="url(#lavGrad)">Guidance</text>
+  </g>
+  
+  <!-- Bottom: Badge -->
+  <g transform="translate(100, 530)">
+    <rect x="0" y="0" width="200" height="48" rx="24" fill="#E9ECFF"/>
+    <text x="100" y="31" font-family="Inter, sans-serif" font-size="15" font-weight="900" fill="#726BEA" text-anchor="middle" letter-spacing="0.15em">SWOOGO MCP</text>
+  </g>
+  
+  <!-- Bottom right: Version badge -->
+  <g transform="translate(950, 540)">
+    <circle cx="15" cy="15" r="15" fill="#10B981"/>
+    <text x="40" y="22" font-family="Inter, sans-serif" font-size="20" font-weight="900" fill="#262966">v1.1.0</text>
+  </g>
+</svg>
