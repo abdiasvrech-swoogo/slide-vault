@@ -1,0 +1,429 @@
+<!--
+  @project:         Swoogo
+  @title:           {PRESENTATION_TITLE}
+  @slug:            {presentation-slug}
+  @version:         1.0.0
+  @author:          {Author}
+  @date:            {YYYY-MM-DD}
+  @context:         {One-line description of the presentation}
+  @audience:        {Target audience}
+  @confidentiality: INTERNAL
+  @logo:            assets/logo
+-->
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <meta name="description" content="{context}" />
+    <meta name="author" content="{author}" />
+    <title>{PRESENTATION_TITLE} — {Author}</title>
+
+    <!-- Base path: resolves all relative URLs from project root -->
+    <!-- From templates/: "../" | From presentations/{slug}/: "../../" -->
+    <base href="../" />
+
+    <!-- Favicon -->
+    <link
+      rel="icon"
+      type="image/png"
+      href="assets/logo/logo-icon.png"
+    />
+    <link rel="apple-touch-icon" href="assets/logo/logo-icon.png" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="" />
+    <meta property="og:title" content="{PRESENTATION_TITLE} — {Author}" />
+    <meta property="og:description" content="{context}" />
+    <meta property="og:image" content="image.png" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="" />
+    <meta property="twitter:title" content="{PRESENTATION_TITLE} — {Author}" />
+    <meta property="twitter:description" content="{context}" />
+    <meta property="twitter:image" content="image.png" />
+
+    <!-- CDN Dependencies -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+
+    <!-- Tailwind Config -->
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              swoogo: {
+                lavender: "#726BEA",
+                pacific: "#262966",
+                mist: "#E9ECFF",
+                chalk: "#F5F5FA",
+                snow: "#F9FAFB",
+                flame: "#F46A34",
+                glow: "#EE8252",
+                teal: "#4BCDB5",
+                bermuda: "#A0F1E2",
+              },
+            },
+          },
+        },
+      };
+    </script>
+
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        overflow: hidden;
+      }
+      body {
+        font-family: "Inter", sans-serif;
+        background-color: #f9fafb;
+        color: #262966;
+      }
+
+      /* Slide transition */
+      .slide-enter {
+        animation: slideIn 0.4s ease-out forwards;
+      }
+      @keyframes slideIn {
+        from {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* Brand gradients */
+      .gradient-text {
+        background: linear-gradient(135deg, #726bea, #262966);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+      .gradient-bg {
+        background: linear-gradient(135deg, #726bea, #262966);
+      }
+
+      /* Scrollbar — content area only */
+      .slide-scroll::-webkit-scrollbar {
+        width: 4px;
+      }
+      .slide-scroll::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      .slide-scroll::-webkit-scrollbar-thumb {
+        background: #e2e8f0;
+        border-radius: 10px;
+      }
+      @media (max-width: 768px) {
+        .slide-scroll::-webkit-scrollbar {
+          display: none;
+        }
+      }
+
+      /* Touch: prevent pull-to-refresh and overscroll bouncing inside iframe */
+      body {
+        overscroll-behavior: none;
+        -webkit-overflow-scrolling: touch;
+      }
+
+      /* Swipe support */
+      .swipe-zone {
+        touch-action: pan-y;
+      }
+    </style>
+  </head>
+
+  <!--
+  LAYOUT ARCHITECTURE
+  ┌─────────────────────────────────────┐
+  │ .app-shell (h-screen, flex col)     │
+  │ ┌─────────────────────────────────┐ │
+  │ │ header (shrink-0)               │ │
+  │ ├─────────────────────────────────┤ │
+  │ │ main.deck (flex-1, overflow)    │ │
+  │ │ ┌─────────────────────────────┐ │ │
+  │ │ │ progress-bar (absolute)     │ │ │
+  │ │ ├─────────────────────────────┤ │ │
+  │ │ │ slide-content (scrollable)  │ │ │
+  │ │ ├─────────────────────────────┤ │ │
+  │ │ │ nav-controls (sticky bottom)│ │ │
+  │ │ └─────────────────────────────┘ │ │
+  │ └─────────────────────────────────┘ │
+  │ ┌─────────────────────────────────┐ │
+  │ │ footer hint (shrink-0, desktop) │ │
+  │ └─────────────────────────────────┘ │
+  └─────────────────────────────────────┘
+
+  Key: content scrolls, controls stay fixed at bottom of deck.
+  Works in: standalone, Notion iframe, any iframe context.
+-->
+
+  <body>
+    <div class="h-screen w-full flex flex-col bg-swoogo-snow">
+      <!-- ===== HEADER ===== -->
+      <header
+        class="shrink-0 w-full max-w-6xl mx-auto flex justify-between items-center px-4 sm:px-6 py-3 sm:py-4"
+      >
+        <div class="flex items-center gap-3 sm:gap-4 min-w-0">
+          <img
+            src="assets/logo/logo-full.svg"
+            alt="Swoogo"
+            class="h-5 sm:h-7 shrink-0"
+          />
+          <div class="hidden sm:block h-5 w-px bg-slate-200 shrink-0"></div>
+          <span
+            class="text-swoogo-lavender font-bold uppercase tracking-widest text-[9px] sm:text-[11px] truncate"
+            >{SHORT_TITLE}</span
+          >
+        </div>
+        <div
+          class="text-slate-400 text-[9px] sm:text-[11px] font-bold tracking-widest shrink-0 ml-4"
+        >
+          <span id="slide-num">1</span> / <span id="slide-total">1</span>
+          <span class="hidden sm:inline">
+            — <span class="text-swoogo-lavender">{Author}</span></span
+          >
+        </div>
+      </header>
+
+      <!-- ===== DECK ===== -->
+      <main
+        class="flex-1 w-full max-w-6xl mx-auto px-0 sm:px-4 md:px-6 pb-0 sm:pb-2 md:pb-4 min-h-0 flex flex-col"
+      >
+        <div
+          id="deck-container"
+          class="flex-1 bg-white sm:rounded-2xl md:rounded-[2.5rem] shadow-lg sm:shadow-xl md:shadow-2xl border border-slate-100/80 flex flex-col relative min-h-0 overflow-hidden"
+        >
+          <!-- Progress Bar -->
+          <div class="h-1 sm:h-1.5 w-full bg-slate-100 shrink-0 relative z-10">
+            <div
+              id="progress-bar"
+              class="h-full bg-swoogo-lavender transition-all duration-500 ease-out"
+              style="width: 0%"
+            ></div>
+          </div>
+
+          <!-- Slide Content (scrollable area) -->
+          <div
+            class="flex-1 overflow-y-auto slide-scroll swipe-zone min-h-0"
+            id="slide-content-wrapper"
+          >
+            <div
+              class="p-5 sm:p-8 md:p-12 lg:p-16 flex flex-col min-h-full"
+              id="slide-content"
+            >
+              <!-- Content injected by JS -->
+            </div>
+          </div>
+
+          <!-- Navigation Controls (always visible, sticky at bottom of deck) -->
+          <div
+            class="shrink-0 flex justify-between items-center px-4 sm:px-6 md:px-8 py-3 sm:py-4 border-t border-slate-100 bg-white/95 backdrop-blur-sm"
+          >
+            <!-- Nav dots (desktop) -->
+            <div
+              class="hidden md:flex gap-1.5 items-center flex-1"
+              id="nav-dots"
+            ></div>
+            <!-- Mobile spacer -->
+            <div class="md:hidden flex-1"></div>
+            <!-- Buttons -->
+            <div class="flex gap-3 items-center">
+              <button
+                onclick="prevSlide()"
+                id="btn-prev"
+                class="w-10 h-10 sm:w-11 sm:h-11 flex items-center justify-center rounded-xl border border-slate-200 hover:bg-slate-50 active:scale-95 transition-all group disabled:opacity-30 disabled:cursor-not-allowed"
+              >
+                <i
+                  class="fa-solid fa-chevron-left text-sm text-slate-400 group-hover:text-swoogo-lavender"
+                ></i>
+              </button>
+              <button
+                onclick="nextSlide()"
+                id="btn-next"
+                class="w-10 h-10 sm:w-11 sm:h-11 flex items-center justify-center rounded-xl bg-swoogo-lavender hover:bg-swoogo-pacific active:scale-95 text-white transition-all disabled:opacity-30 disabled:cursor-not-allowed"
+              >
+                <i class="fa-solid fa-chevron-right text-sm"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </main>
+
+      <!-- ===== FOOTER HINT ===== -->
+      <div class="shrink-0 hidden md:block text-center py-3">
+        <span
+          class="text-slate-300 text-[10px] font-medium uppercase tracking-widest"
+          >Arrow keys or spacebar to navigate</span
+        >
+      </div>
+    </div>
+
+    <script>
+      // =============================================
+      // SLIDE DATA — Replace this array with your slides
+      // =============================================
+      const slides = [
+        // Slide 1: Cover / Hook
+        {
+          title: "",
+          content: `
+            <div class="flex flex-col items-center justify-center text-center py-6 sm:py-10 md:py-16 slide-enter flex-1">
+                <div class="p-4 sm:p-5 bg-swoogo-mist rounded-2xl sm:rounded-3xl mb-6 sm:mb-8">
+                    <i class="fa-solid fa-bolt text-3xl sm:text-4xl md:text-5xl text-swoogo-lavender"></i>
+                </div>
+                <h1 class="text-3xl sm:text-4xl md:text-6xl font-black text-swoogo-pacific mb-4 sm:mb-6 leading-tight px-2">
+                    Presentation Title<br>
+                    <span class="gradient-text">Accent Line Here</span>
+                </h1>
+                <p class="text-base sm:text-lg md:text-2xl text-slate-500 max-w-2xl font-medium px-4">
+                    One or two sentence subtitle that frames the core insight.
+                </p>
+                <div class="mt-6 sm:mt-8 md:mt-12 flex flex-wrap justify-center gap-2 sm:gap-3">
+                    <span class="px-3 sm:px-4 py-1 sm:py-1.5 bg-swoogo-mist text-swoogo-lavender rounded-full text-[10px] sm:text-xs font-bold uppercase tracking-wider">Status</span>
+                </div>
+            </div>
+            `,
+        },
+        // Slide 2: Example Content Slide
+        {
+          title: "Slide Title Here",
+          content: `
+            <div class="flex flex-col flex-1 justify-center slide-enter">
+                <p class="text-lg sm:text-xl text-slate-500 font-medium">Replace this with your slide content.</p>
+            </div>
+            `,
+        },
+      ];
+
+      // =============================================
+      // NAVIGATION ENGINE — Do not modify
+      // =============================================
+      let currentSlideIndex = 0;
+
+      function updateUI() {
+        const slide = slides[currentSlideIndex];
+        const content = document.getElementById("slide-content");
+        const wrapper = document.getElementById("slide-content-wrapper");
+
+        let slideHTML = "";
+        if (slide.title) {
+          slideHTML = `
+                <div class="mb-6 sm:mb-8 md:mb-10 slide-enter">
+                    <h2 class="text-2xl sm:text-3xl md:text-5xl font-black text-swoogo-pacific leading-tight tracking-tight">${slide.title}</h2>
+                </div>
+            `;
+        }
+        content.innerHTML = slideHTML + slide.content;
+
+        // Update counters
+        document.getElementById("slide-num").innerText = currentSlideIndex + 1;
+        document.getElementById("slide-total").innerText = slides.length;
+        document.getElementById("progress-bar").style.width =
+          `${((currentSlideIndex + 1) / slides.length) * 100}%`;
+
+        // Navigation dots
+        const dotsContainer = document.getElementById("nav-dots");
+        dotsContainer.innerHTML = slides
+          .map(
+            (_, i) => `
+            <button onclick="goToSlide(${i})" class="h-1.5 rounded-full transition-all duration-300 ${i === currentSlideIndex ? "w-8 bg-swoogo-lavender" : "w-1.5 bg-slate-200 hover:bg-slate-300"}"></button>
+        `,
+          )
+          .join("");
+
+        // Button states
+        document.getElementById("btn-prev").disabled = currentSlideIndex === 0;
+        document.getElementById("btn-next").disabled =
+          currentSlideIndex === slides.length - 1;
+
+        // Reset scroll position
+        wrapper.scrollTop = 0;
+      }
+
+      function nextSlide() {
+        if (currentSlideIndex < slides.length - 1) {
+          currentSlideIndex++;
+          updateUI();
+        }
+      }
+
+      function prevSlide() {
+        if (currentSlideIndex > 0) {
+          currentSlideIndex--;
+          updateUI();
+        }
+      }
+
+      function goToSlide(i) {
+        currentSlideIndex = i;
+        updateUI();
+      }
+
+      // Keyboard navigation
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "ArrowRight" || e.key === " ") {
+          e.preventDefault();
+          nextSlide();
+        }
+        if (e.key === "ArrowLeft") {
+          e.preventDefault();
+          prevSlide();
+        }
+      });
+
+      // Touch swipe support
+      let touchStartX = 0;
+      let touchEndX = 0;
+      const swipeThreshold = 50;
+
+      document.getElementById("slide-content-wrapper").addEventListener(
+        "touchstart",
+        (e) => {
+          touchStartX = e.changedTouches[0].screenX;
+        },
+        { passive: true },
+      );
+
+      document.getElementById("slide-content-wrapper").addEventListener(
+        "touchend",
+        (e) => {
+          touchEndX = e.changedTouches[0].screenX;
+          const diff = touchStartX - touchEndX;
+          if (Math.abs(diff) > swipeThreshold) {
+            if (diff > 0)
+              nextSlide(); // Swipe left → next
+            else prevSlide(); // Swipe right → prev
+          }
+        },
+        { passive: true },
+      );
+
+      // Initialize
+      updateUI();
+    </script>
+  </body>
+</html>
