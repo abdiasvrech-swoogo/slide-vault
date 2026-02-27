@@ -1,0 +1,14 @@
+<svg width="256" height="256" viewBox="0 0 256 256" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Orange background matching logo-icon.png -->
+  <rect width="256" height="256" rx="48" fill="#F46A34"/>
+
+  <!-- Slide/screen shape -->
+  <rect x="48" y="56" width="160" height="112" rx="12" fill="white" opacity="0.25"/>
+
+  <!-- Play triangle centered in the slide -->
+  <path d="M112 88 L152 112 L112 136 Z" fill="white"/>
+
+  <!-- Bottom bar representing slides/deck -->
+  <rect x="64" y="184" width="128" height="8" rx="4" fill="white" opacity="0.5"/>
+  <rect x="80" y="200" width="96" height="6" rx="3" fill="white" opacity="0.3"/>
+</svg>

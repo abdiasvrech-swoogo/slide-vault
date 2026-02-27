@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/swoogo-logo.svg" alt="Swoogo" width="200">
+  <img src="assets/logo/logo-full.svg" alt="Swoogo" width="200">
 </p>
 
 # 📊 Slide Vault
@@ -20,14 +20,21 @@ Plus, I can update them on the fly if I need to fix something or add more contex
 
 ## How to Use
 
-Check out [The Presentation Master Prompt](templates/The%20Presentation%20Master%20Prompt.md) for the AI instructions I use to generate presentations. It includes the brand style, tone guidelines, and structure template.
+Check out [The Presentation Master Prompt](templates/master-prompt.md) for the AI instructions I use to generate presentations. It includes the brand style, tone guidelines, and structure template.
 
 ## Project Structure
 
 ```
 slide-vault/
-├── presentations/     # Generated slide decks
-├── assets/           # Images, logos, and media
-├── templates/        # Prompt templates and guides
+├── assets/
+│   ├── logo/             # logo-full.svg, logo-icon.png
+│   └── brand/            # tokens.json (colors, typography)
+├── presentations/        # Generated slide decks
+│   └── {slug}/
+│       ├── index.html    # The presentation
+│       └── image.png     # Social preview
+├── templates/
+│   ├── master-prompt.md  # AI instructions for generating slides
+│   └── skeleton.html     # Starter HTML with navigation engine
 └── README.md
 ``` 
